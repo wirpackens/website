@@ -1,20 +1,35 @@
 # GitHub & Vercel Setup Guide
 
-## Schritt 1: Repository zu GitHub pushen
+## Git-Lock-Problem beheben
 
-Das Projekt ist bereits bereit für GitHub. Führen Sie folgende Befehle aus:
+Falls Sie Git-Fehler bekommen ("could not lock config file"), führen Sie diese Befehle aus:
 
 ```bash
-# Alle Dateien zum Staging hinzufügen
+# Git-Lock-Dateien entfernen
+rm -f .git/index.lock .git/config.lock .git/HEAD.lock
+
+# Git-Status prüfen
+git status
+
+# Falls nötig, Git-Repository komplett neu initialisieren
+rm -rf .git
+git init
 git add .
-
-# Commit erstellen
-git commit -m "Complete Wir Packens UG website with GDPR cookie banner"
-
-# Remote Repository hinzufügen (falls noch nicht geschehen)
+git commit -m "Complete Wir Packens UG website with email system and GDPR compliance"
+git branch -M main
 git remote add origin https://github.com/miguelhaeslerde/wirpackens.git
+git push -u origin main
+```
 
-# Code zu GitHub pushen
+## Schritt 1: Repository zu GitHub pushen
+
+Das Projekt ist bereits bereit für GitHub. Nach der Lock-Problem-Behebung:
+
+```bash
+# Standard-Vorgehen (wenn kein Lock-Problem)
+git add .
+git commit -m "Complete Wir Packens UG website with email system"
+git remote add origin https://github.com/miguelhaeslerde/wirpackens.git
 git push -u origin main
 ```
 
