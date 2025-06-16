@@ -28,13 +28,13 @@ export default function Impressum() {
             <CardContent className="space-y-6">
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Firma</h3>
-                <p className="text-muted-foreground">Wir packens Entrümplung UG (haftungsbeschränkt)</p>
+                <p className="text-muted-foreground">Wir Packens UG (haftungsbeschränkt)</p>
               </div>
 
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Anschrift</h3>
                 <p className="text-muted-foreground">
-                  Musterstraße 123<br />
+                  Hans-Geisser-Straße 8<br />
                   34281 Gudensberg<br />
                   Deutschland
                 </p>
@@ -49,7 +49,7 @@ export default function Impressum() {
                   </p>
                   <p className="flex items-center">
                     <Mail className="h-4 w-4 mr-2" />
-                    E-Mail: info@wir-packens.de
+                    E-Mail: kontakt@wirpackens.org
                   </p>
                 </div>
               </div>

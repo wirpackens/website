@@ -36,8 +36,8 @@ export default function Footer() {
                 <Truck className="h-6 w-6" />
               </div>
               <div>
-                <h3 className="text-xl font-bold">Wir packens</h3>
-                <p className="text-sm text-muted-foreground">Entrümplung UG</p>
+                <h3 className="text-xl font-bold">Wir Packens</h3>
+                <p className="text-sm text-muted-foreground">UG</p>
               </div>
             </div>
             <p className="text-muted-foreground leading-relaxed mb-6">
@@ -94,7 +94,7 @@ export default function Footer() {
                   <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
-                <span>info@wir-packens.de</span>
+                <span>kontakt@wirpackens.org</span>
               </div>
               <div className="flex items-start space-x-3">
                 <svg className="h-5 w-5 text-primary mt-1" fill="currentColor" viewBox="0 0 20 20">
@@ -151,7 +151,7 @@ export default function Footer() {
         <div className="border-t border-muted-foreground/20 pt-8">
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
             <div className="text-muted-foreground text-sm">
-              © 2024 Wir packens Entrümplung UG. Alle Rechte vorbehalten.
+              © 2024 Wir Packens UG. Alle Rechte vorbehalten.
             </div>
             <div className="flex items-center space-x-6 text-muted-foreground text-sm">
               <span>Handelsregister: HRB 12345</span>

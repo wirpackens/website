@@ -177,7 +177,7 @@ export default function Contact() {
                   <Checkbox
                     id="privacy-agreement"
                     checked={privacyAgreed}
-                    onCheckedChange={setPrivacyAgreed}
+                    onCheckedChange={(checked) => setPrivacyAgreed(checked === true)}
                   />
                   <Label htmlFor="privacy-agreement" className="text-sm leading-relaxed">
                     Ich stimme der <a href="/datenschutz" className="text-primary hover:underline">Datenschutzerklärung</a> zu und erlaube die Kontaktaufnahme. *
@@ -220,7 +220,7 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-foreground">E-Mail</h4>
-                      <p className="text-muted-foreground">info@wir-packens.de</p>
+                      <p className="text-muted-foreground">kontakt@wirpackens.org</p>
                       <p className="text-sm text-muted-foreground">Antwort innerhalb 24h</p>
                     </div>
                   </div>

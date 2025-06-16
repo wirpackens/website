@@ -32,8 +32,8 @@ export default function Header() {
               <Truck className="h-6 w-6" />
             </div>
             <div>
-              <h1 className="text-xl lg:text-2xl font-bold text-foreground">Wir packens</h1>
-              <p className="text-xs text-muted-foreground hidden lg:block">Entrümplung UG</p>
+              <h1 className="text-xl lg:text-2xl font-bold text-foreground">Wir Packens</h1>
+              <p className="text-xs text-muted-foreground hidden lg:block">UG</p>
             </div>
           </Link>
 
