@@ -80,7 +80,7 @@ export default function Impressum() {
                 <h3 className="font-semibold text-foreground mb-2">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
                 <p className="text-muted-foreground">
                   Max Mustermann<br />
-                  Musterstraße 123<br />
+                  Hans-Geisser-Straße 8<br />
                   34281 Gudensberg
                 </p>
               </div>

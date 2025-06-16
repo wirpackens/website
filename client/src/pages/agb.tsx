@@ -22,7 +22,7 @@ export default function AGB() {
             <CardHeader>
               <CardTitle className="flex items-center">
                 <FileText className="h-5 w-5 mr-2" />
-                AGB - Wir packens Entrümplung UG
+                AGB - Wir Packens UG
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -30,8 +30,8 @@ export default function AGB() {
                 <h3 className="font-semibold text-foreground mb-2">§ 1 Geltungsbereich</h3>
                 <div className="text-muted-foreground space-y-2">
                   <p>
-                    Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge zwischen der Wir packens 
-                    Entrümplung UG (nachfolgend "Auftragnehmer") und dem Kunden über Entrümpelungs-, Räumungs-, 
+                    Diese Allgemeinen Geschäftsbedingungen gelten für alle Verträge zwischen der Wir Packens 
+                    UG (nachfolgend "Auftragnehmer") und dem Kunden über Entrümpelungs-, Räumungs-, 
                     Umzugs- und Reinigungsleistungen.
                   </p>
                   <p>
