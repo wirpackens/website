@@ -44,6 +44,9 @@ Professionelle Landingpage für ein deutsches Entrümpelungsunternehmen mit Sitz
 - Firmenadresse zu Hans-Geisser-Straße 8, 34281 Gudensberg angepasst
 - Alle Referenzen auf der Website entsprechend aktualisiert
 - TypeScript-Fehler im Kontaktformular behoben
+- GDPR-konformen Cookie-Banner implementiert mit granularen Einstellungen
+- Cookie-Verwaltung in Footer und Datenschutzerklärung ergänzt
+- Vollständige Cookie-Dokumentation in Datenschutzerklärung hinzugefügt
 
 ## Benutzerpräferenzen
 - Deutsche Sprache für alle Inhalte

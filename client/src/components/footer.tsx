@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Truck, Facebook, Instagram } from "lucide-react";
 import { FaGoogle } from "react-icons/fa";
+import CookieSettingsButton from "@/components/cookie-settings-button";
 
 export default function Footer() {
   const services = [
@@ -153,9 +154,12 @@ export default function Footer() {
             <div className="text-muted-foreground text-sm">
               © 2024 Wir Packens UG. Alle Rechte vorbehalten.
             </div>
-            <div className="flex items-center space-x-6 text-muted-foreground text-sm">
-              <span>Handelsregister: HRB 12345</span>
-              <span>USt-IdNr.: DE123456789</span>
+            <div className="flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 lg:space-x-6 text-muted-foreground text-sm">
+              <div className="flex items-center space-x-6">
+                <span>Handelsregister: HRB 12345</span>
+                <span>USt-IdNr.: DE123456789</span>
+              </div>
+              <CookieSettingsButton />
             </div>
           </div>
         </div>

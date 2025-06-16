@@ -75,7 +75,30 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="font-semibold text-foreground mb-2">4. Kontaktformular</h3>
+                <h3 className="font-semibold text-foreground mb-2">4. Cookies und ähnliche Technologien</h3>
+                <div className="text-muted-foreground space-y-2">
+                  <h4 className="font-semibold text-foreground">Was sind Cookies?</h4>
+                  <p>
+                    Cookies sind kleine Textdateien, die beim Besuch einer Website auf Ihrem Gerät gespeichert werden. 
+                    Sie ermöglichen es, Sie bei einem erneuten Besuch zu erkennen und Ihre Präferenzen zu speichern.
+                  </p>
+                  
+                  <h4 className="font-semibold text-foreground">Arten von Cookies</h4>
+                  <p><strong>Notwendige Cookies:</strong> Diese sind für die Grundfunktionen der Website erforderlich und können nicht deaktiviert werden. Sie speichern keine persönlich identifizierbaren Informationen.</p>
+                  <p><strong>Analyse-Cookies:</strong> Diese helfen uns zu verstehen, wie Besucher mit der Website interagieren, indem sie anonyme Informationen sammeln und weiterleiten.</p>
+                  <p><strong>Marketing-Cookies:</strong> Diese werden verwendet, um Besuchern auf Webseiten zu folgen und relevante Werbung anzuzeigen.</p>
+                  
+                  <h4 className="font-semibold text-foreground">Ihre Cookie-Einstellungen</h4>
+                  <p>
+                    Sie können Ihre Cookie-Einstellungen jederzeit über unseren Cookie-Banner ändern oder über 
+                    die Einstellungen Ihres Browsers verwalten. Beachten Sie, dass die Deaktivierung bestimmter 
+                    Cookies die Funktionalität der Website beeinträchtigen kann.
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-foreground mb-2">5. Kontaktformular</h3>
                 <div className="text-muted-foreground space-y-2">
                   <p>
                     Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem 
@@ -91,7 +114,7 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="font-semibold text-foreground mb-2">5. Ihre Rechte</h3>
+                <h3 className="font-semibold text-foreground mb-2">6. Ihre Rechte</h3>
                 <div className="text-muted-foreground space-y-2">
                   <p>Sie haben jederzeit das Recht:</p>
                   <ul className="list-disc list-inside space-y-1 ml-4">
@@ -108,7 +131,7 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="font-semibold text-foreground mb-2">6. Widerspruchsrecht</h3>
+                <h3 className="font-semibold text-foreground mb-2">7. Widerspruchsrecht</h3>
                 <div className="text-muted-foreground space-y-2">
                   <p>
                     Sie haben das Recht, jederzeit gegen die Verarbeitung Ihrer personenbezogenen Daten, die aufgrund 
