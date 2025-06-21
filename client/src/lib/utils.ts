@@ -15,7 +15,7 @@ export function calculatePrice(
   const servicePrices: Record<string, number> = {
     household: 25, // €/m²
     office: 30, // €/m²
-    moving: 80, // €/hour
+    moving: 22, // €/m²
     messie: 35, // €/m²
     cleaning: 15, // €/m²
   };
@@ -26,14 +26,8 @@ export function calculatePrice(
   if (serviceType && squareMeters > 0) {
     const pricePerUnit = servicePrices[serviceType] || 0;
 
-    if (serviceType === 'moving') {
-      // Moving service is hourly rate - estimate hours based on size
-      const estimatedHours = Math.max(2, Math.ceil(squareMeters / 20));
-      basePrice = pricePerUnit * estimatedHours;
-    } else {
-      // Other services are per square meter
-      basePrice = pricePerUnit * squareMeters;
-    }
+    // All services are now per square meter
+    basePrice = pricePerUnit * squareMeters;
 
     // Additional services
     if (expressService) {

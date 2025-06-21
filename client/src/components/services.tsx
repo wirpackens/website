@@ -30,9 +30,9 @@ export default function Services() {
     {
       icon: Truck,
       title: "Umzug",
-      description: "Komplettservice für Ihren Umzug – von der Verpackung bis zur Möbelmontage am neuen Ort.",
-      features: ["Verpackung", "Transport", "Möbelmontage"],
-      price: "Ab 80€/h",
+      description: "Komplettservice für Ihren Umzug – von der Verpackung bis zur Möbeldemontage am neuen Ort.",
+      features: ["Verpackung", "Transport", "Möbeldemontage"],
+      price: "Ab 22€/m²",
       color: "bg-primary"
     },
     {
