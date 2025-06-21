@@ -32,7 +32,7 @@ export default function Services() {
       title: "Umzug",
       description: "Komplettservice für Ihren Umzug – von der Verpackung bis zur Möbeldemontage am neuen Ort.",
       features: ["Verpackung", "Transport", "Möbeldemontage"],
-      price: "Ab 22€/m²",
+      price: "Ab 12€/m²",
       color: "bg-primary"
     },
     {

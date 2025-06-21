@@ -14,7 +14,7 @@ Professionelle Landingpage für ein deutsches Entrümpelungsunternehmen mit Sitz
 ## Dienstleistungen
 - Haushaltsauflösung (25€/m²)
 - Büroentrümpelung (30€/m²)
-- Umzugsservice (22€/m²)
+- Umzugsservice (12€/m²)
 - Messiewohnung-Entrümpelung (35€/m²)
 - Besenrein-Säuberung (15€/m²)
 
@@ -54,7 +54,7 @@ Professionelle Landingpage für ein deutsches Entrümpelungsunternehmen mit Sitz
 - **E-Mail-System implementiert**: SendGrid durch kostenloses nodemailer mit Gmail/SMTP2GO ersetzt
 - E-Mail-Versand für Kontaktformular und Preisrechner aktiviert
 - EMAIL_SETUP.md mit Anleitung für kostenlose E-Mail-Konfiguration erstellt
-- **Umzugsservice-Preismodell geändert**: Von 80€/h auf 22€/m² umgestellt
+- **Umzugsservice-Preismodell optimiert**: Von 80€/h auf 12€/m² angepasst (marktgerechte Pauschale)
 - "Möbelmontage" zu "Möbeldemontage" korrigiert
 - Preisrechner für einheitliche m²-Berechnung angepasst
 

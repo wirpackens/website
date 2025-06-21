@@ -15,7 +15,7 @@ export function calculatePrice(
   const servicePrices: Record<string, number> = {
     household: 25, // €/m²
     office: 30, // €/m²
-    moving: 22, // €/m²
+    moving: 12, // €/m²
     messie: 35, // €/m²
     cleaning: 15, // €/m²
   };
