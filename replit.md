@@ -60,6 +60,8 @@ Hinweis: Besenreine Übergabe ist bei allen Dienstleistungen standardmäßig ent
 - Preisrechner für einheitliche m²-Berechnung angepasst
 - **Besenrein als Standard integriert**: Separate Besenrein-Dienstleistung entfernt, ist jetzt bei allen Services enthalten
 - Alle Dienstleistungen um "Besenreine Übergabe" erweitert
+- **Express-Service Erklärung hinzugefügt**: Detaillierte Informationen zur 1-2 Tage Garantie für dringliche Aufträge
+- Visuelle Express-Service Sektion in Services-Bereich integriert
 
 ## Deployment Status
 - ✅ Alle Deployment-Dateien erstellt

@@ -173,9 +173,14 @@ export default function PriceCalculator() {
                           checked={expressService}
                           onCheckedChange={setExpressService}
                         />
-                        <Label htmlFor="express-service" className="text-sm">
-                          Express-Service (+20%)
-                        </Label>
+                        <div className="flex flex-col">
+                          <Label htmlFor="express-service" className="text-sm font-medium">
+                            Express-Service (+20%)
+                          </Label>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Dringliche Erledigung innerhalb von 1-2 Tagen
+                          </p>
+                        </div>
                       </div>
                       <div className="flex items-center space-x-2">
                         <Checkbox

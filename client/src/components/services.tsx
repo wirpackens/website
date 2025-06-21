@@ -98,6 +98,36 @@ export default function Services() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Express Service Info */}
+        <div className="mt-16 max-w-4xl mx-auto">
+          <Card className="bg-gradient-to-r from-secondary/20 to-primary/20 border-secondary/30">
+            <CardContent className="p-8 text-center">
+              <div className="bg-secondary text-secondary-foreground rounded-lg p-4 w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                <Star className="h-8 w-8" />
+              </div>
+              <h3 className="text-2xl font-bold text-foreground mb-4">Express-Service verfügbar</h3>
+              <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Haben Sie es eilig? Unser Express-Service garantiert die Erledigung Ihres Auftrags innerhalb von 1-2 Tagen. 
+                Perfekt für dringliche Räumungen vor Übergabeterminen oder kurzfristige Umzüge.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center text-sm text-muted-foreground">
+                <div className="flex items-center">
+                  <Check className="h-4 w-4 text-secondary mr-2" />
+                  Garantierte Erledigung in 1-2 Tagen
+                </div>
+                <div className="flex items-center">
+                  <Check className="h-4 w-4 text-secondary mr-2" />
+                  Bevorzugte Terminplanung
+                </div>
+                <div className="flex items-center">
+                  <Check className="h-4 w-4 text-secondary mr-2" />
+                  Aufpreis nur 20%
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </section>
   );
