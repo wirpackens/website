@@ -5,10 +5,12 @@ import PriceCalculator from "@/components/price-calculator";
 import About from "@/components/about";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
+import PriceGuaranteeBanner from "@/components/price-guarantee-banner";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <PriceGuaranteeBanner />
       <Header />
       <main>
         <Hero />
