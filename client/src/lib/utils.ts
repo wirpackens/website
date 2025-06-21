@@ -13,11 +13,10 @@ export function calculatePrice(
   disposalService: boolean = false
 ) {
   const servicePrices: Record<string, number> = {
-    household: 25, // €/m²
-    office: 30, // €/m²
-    moving: 12, // €/m²
-    messie: 35, // €/m²
-    cleaning: 15, // €/m²
+    household: 25, // €/m² (inkl. besenreine Übergabe)
+    office: 30, // €/m² (inkl. besenreine Übergabe)
+    moving: 12, // €/m² (inkl. besenreine Übergabe)
+    messie: 35, // €/m² (inkl. besenreine Übergabe)
   };
 
   let basePrice = 0;

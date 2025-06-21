@@ -12,11 +12,12 @@ Professionelle Landingpage für ein deutsches Entrümpelungsunternehmen mit Sitz
 - **Telefon**: 05603 123456
 
 ## Dienstleistungen
-- Haushaltsauflösung (25€/m²)
-- Büroentrümpelung (30€/m²)
-- Umzugsservice (12€/m²)
-- Messiewohnung-Entrümpelung (35€/m²)
-- Besenrein-Säuberung (15€/m²)
+- Haushaltsauflösung (25€/m²) - inkl. besenreine Übergabe
+- Büroentrümpelung (30€/m²) - inkl. besenreine Übergabe
+- Umzugsservice (12€/m²) - inkl. besenreine Übergabe
+- Messiewohnung-Entrümpelung (35€/m²) - inkl. besenreine Übergabe
+
+Hinweis: Besenreine Übergabe ist bei allen Dienstleistungen standardmäßig enthalten.
 
 ## Technische Architektur
 - **Frontend**: React + TypeScript mit Vite
@@ -57,6 +58,8 @@ Professionelle Landingpage für ein deutsches Entrümpelungsunternehmen mit Sitz
 - **Umzugsservice-Preismodell optimiert**: Von 80€/h auf 12€/m² angepasst (marktgerechte Pauschale)
 - "Möbelmontage" zu "Möbeldemontage" korrigiert
 - Preisrechner für einheitliche m²-Berechnung angepasst
+- **Besenrein als Standard integriert**: Separate Besenrein-Dienstleistung entfernt, ist jetzt bei allen Services enthalten
+- Alle Dienstleistungen um "Besenreine Übergabe" erweitert
 
 ## Deployment Status
 - ✅ Alle Deployment-Dateien erstellt

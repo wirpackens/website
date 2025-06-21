@@ -87,7 +87,6 @@ export default function PriceCalculator() {
     { value: "office", label: "Büroentrümpelung (30€/m²)" },
     { value: "moving", label: "Umzug (12€/m²)" },
     { value: "messie", label: "Messiewohnung (35€/m²)" },
-    { value: "cleaning", label: "Besenrein (15€/m²)" },
   ];
 
   const roomOptions = [

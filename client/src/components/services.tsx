@@ -14,41 +14,33 @@ export default function Services() {
     {
       icon: Home,
       title: "Haushaltsauflösung",
-      description: "Komplette Wohnungsräumung mit fachgerechter Entsorgung und Verwertung. Diskret und respektvoll.",
-      features: ["Möbel und Hausrat", "Elektrogeräte", "Fachgerechte Entsorgung"],
+      description: "Komplette Wohnungsräumung mit fachgerechter Entsorgung und Verwertung. Inkl. besenreiner Übergabe.",
+      features: ["Möbel und Hausrat", "Elektrogeräte", "Fachgerechte Entsorgung", "Besenreine Übergabe"],
       price: "Ab 25€/m²",
       color: "bg-primary"
     },
     {
       icon: Building,
       title: "Büroentrümpelung",
-      description: "Professionelle Büroräumung mit Datenschutz-konformer Aktenvernichtung und IT-Entsorgung.",
-      features: ["Büromöbel", "IT-Equipment", "Aktenvernichtung"],
+      description: "Professionelle Büroräumung mit Datenschutz-konformer Aktenvernichtung und IT-Entsorgung. Inkl. besenreiner Übergabe.",
+      features: ["Büromöbel", "IT-Equipment", "Aktenvernichtung", "Besenreine Übergabe"],
       price: "Ab 30€/m²",
       color: "bg-primary"
     },
     {
       icon: Truck,
       title: "Umzug",
-      description: "Komplettservice für Ihren Umzug – von der Verpackung bis zur Möbeldemontage am neuen Ort.",
-      features: ["Verpackung", "Transport", "Möbeldemontage"],
+      description: "Komplettservice für Ihren Umzug – von der Verpackung bis zur Möbeldemontage am neuen Ort. Inkl. besenreiner Übergabe.",
+      features: ["Verpackung", "Transport", "Möbeldemontage", "Besenreine Übergabe"],
       price: "Ab 12€/m²",
       color: "bg-primary"
     },
     {
       icon: AlertTriangle,
       title: "Messiewohnung",
-      description: "Einfühlsame Räumung von Messiewohnungen mit spezieller Ausstattung und Hygienemaßnahmen.",
-      features: ["Diskrete Abwicklung", "Spezialausrüstung", "Hygienische Entsorgung"],
+      description: "Einfühlsame Räumung von Messiewohnungen mit spezieller Ausstattung und Hygienemaßnahmen. Inkl. besenreiner Übergabe.",
+      features: ["Diskrete Abwicklung", "Spezialausrüstung", "Hygienische Entsorgung", "Besenreine Übergabe"],
       price: "Ab 35€/m²",
-      color: "bg-primary"
-    },
-    {
-      icon: Fan,
-      title: "Besenrein",
-      description: "Gründliche Endreinigung nach Entrümpelung oder vor Übergabe – bis hin zur Schlüsselübergabe.",
-      features: ["Gründliche Reinigung", "Alle Räume", "Übergabebereit"],
-      price: "Ab 15€/m²",
       color: "bg-primary"
     }
   ];
