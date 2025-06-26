@@ -64,6 +64,10 @@ Hinweis: Besenreine Übergabe ist bei allen Dienstleistungen standardmäßig ent
 - Visuelle Express-Service Sektion in Services-Bereich integriert
 - **Festpreisgarantie-Banner implementiert**: Prominenter Banner ganz oben mit Verkaufsargument "Keine versteckten Kosten"
 - Banner mit Schließ-Funktion und Shield-Icon für Vertrauensbildung
+- **Kostenlose Sichtprüfung bis 30km implementiert**: Prominenter Banner mit MapPin-Icon und grünem Design
+- Klare Kommunikation der kostenlosen Besichtigung ohne Verpflichtungen
+- **Aufbauservice-Klarstellung hinzugefügt**: Deutlicher Hinweis dass nur Demontage/Transport, keine Montage angeboten wird
+- Blaue Info-Box in Services-Sektion zur Vermeidung von Missverständnissen
 
 ## Deployment Status
 - ✅ Alle Deployment-Dateien erstellt

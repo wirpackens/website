@@ -128,6 +128,24 @@ export default function Services() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Service Info */}
+        <div className="mt-12 bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <Fan className="h-4 w-4" />
+              Wichtiger Hinweis
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              Unsere Dienstleistungen ohne Aufbauservice
+            </h3>
+            <p className="text-gray-700 max-w-2xl mx-auto">
+              Wir bieten ausschließlich Entrümpelung, Demontage und Transport an. 
+              Möbelmontage oder Aufbauarbeiten sind nicht Teil unserer Leistungen. 
+              Alle Preise verstehen sich für die reine Räumung und besenreine Übergabe.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
