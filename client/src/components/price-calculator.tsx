@@ -202,6 +202,7 @@ export default function PriceCalculator() {
                           Sondermüll-Entsorgung (+10€/m²)
                         </Label>
                       </div>
+
                     </div>
                   </div>
                 </div>

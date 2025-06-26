@@ -10,7 +10,8 @@ export function calculatePrice(
   squareMeters: number,
   expressService: boolean = false,
   weekendService: boolean = false,
-  disposalService: boolean = false
+  disposalService: boolean = false,
+  withoutAssembly: boolean = false
 ) {
   const servicePrices: Record<string, number> = {
     household: 25, // €/m² (inkl. besenreine Übergabe)
@@ -37,6 +38,9 @@ export function calculatePrice(
     }
     if (disposalService) {
       additionalPrice += 10 * squareMeters; // 10€ per square meter
+    }
+    if (withoutAssembly) {
+      additionalPrice -= basePrice * 0.15; // 15% discount for no assembly service
     }
   }
 
