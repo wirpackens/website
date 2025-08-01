@@ -44,6 +44,9 @@ Hinweis: Besenreine Übergabe ist bei allen Dienstleistungen standardmäßig ent
 - Calendly Widget für https://calendly.com/justin-wirpackens/30min eingebunden
 - Navigation auf "Termin buchen" angepasst für direkte Weiterleitung zum Buchungssystem
 - Hero-Button von "Kostenlos anrufen" zu "Termin buchen" geändert
+- **Festpreis-Garantie im Preisrechner**: Grüne CTA-Sektion nach Preisberechnung mit direkter Calendly-Weiterleitung
+- 24h-Bonus-Rabatt von 5% bei schneller Buchung implementiert
+- Festpreisgarantie prominent mit Shield-Icon und attraktivem grünen Design
 - **Reale Firmenbilder implementiert**: Alle Placeholder-Bilder durch authentische Unternehmensfotos ersetzt
 - Hero-Sektion mit echtem Entrümpelungsteam-Foto aktualisiert
 - About-Sektion mit Bildern vom Treppenhaus-Transport und Arbeitsszenen ergänzt

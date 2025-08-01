@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { calculatePrice, formatPrice } from "@/lib/utils";
 import { apiRequest } from "@/lib/queryClient";
-import { Info, Send } from "lucide-react";
+import { Info, Send, Shield, Calendar } from "lucide-react";
 import type { InsertPriceCalculation } from "@shared/schema";
 
 export default function PriceCalculator() {
@@ -73,12 +73,13 @@ export default function PriceCalculator() {
       };
 
       savePriceCalculation.mutate(calculationData);
-      
-      // Scroll to contact section
-      const element = document.getElementById('contact');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+    }
+  };
+
+  const scrollToContact = () => {
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -171,7 +172,7 @@ export default function PriceCalculator() {
                         <Checkbox
                           id="express-service"
                           checked={expressService}
-                          onCheckedChange={setExpressService}
+                          onCheckedChange={(checked) => setExpressService(checked === true)}
                         />
                         <div className="flex flex-col">
                           <Label htmlFor="express-service" className="text-sm font-medium">
@@ -186,7 +187,7 @@ export default function PriceCalculator() {
                         <Checkbox
                           id="weekend-service"
                           checked={weekendService}
-                          onCheckedChange={setWeekendService}
+                          onCheckedChange={(checked) => setWeekendService(checked === true)}
                         />
                         <Label htmlFor="weekend-service" className="text-sm">
                           Wochenend-Service (+15%)
@@ -196,7 +197,7 @@ export default function PriceCalculator() {
                         <Checkbox
                           id="disposal-service"
                           checked={disposalService}
-                          onCheckedChange={setDisposalService}
+                          onCheckedChange={(checked) => setDisposalService(checked === true)}
                         />
                         <Label htmlFor="disposal-service" className="text-sm">
                           Sondermüll-Entsorgung (+10€/m²)
@@ -257,6 +258,47 @@ export default function PriceCalculator() {
             </div>
           </Card>
         </div>
+
+        {/* Festpreis Garantie Section */}
+        {prices.totalPrice > 0 && (
+          <div className="max-w-4xl mx-auto mt-12">
+            <Card className="bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 shadow-xl">
+              <CardContent className="p-8 text-center">
+                <div className="bg-white/20 text-white rounded-lg p-4 w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                  <Shield className="h-8 w-8" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">🎯 Festpreis-Garantie sichern!</h3>
+                <p className="text-lg mb-6 opacity-90">
+                  Sichern Sie sich jetzt Ihren berechneten Preis von <span className="font-bold text-xl">{formatPrice(prices.totalPrice)}</span> 
+                  mit unserer Festpreis-Garantie. Buchen Sie direkt einen Termin!
+                </p>
+                
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div className="bg-white/10 rounded-lg p-4">
+                    <div className="font-semibold mb-2">✅ Garantierter Festpreis</div>
+                    <div className="text-sm opacity-90">Keine versteckten Kosten oder Überraschungen</div>
+                  </div>
+                  <div className="bg-white/10 rounded-lg p-4">
+                    <div className="font-semibold mb-2">📅 Kostenlose Besichtigung</div>
+                    <div className="text-sm opacity-90">Bis 30km ohne Verpflichtungen</div>
+                  </div>
+                </div>
+
+                <Button 
+                  onClick={scrollToContact}
+                  className="bg-white text-green-600 hover:bg-gray-100 font-bold text-lg px-8 py-3 h-auto"
+                >
+                  <Calendar className="h-5 w-5 mr-2" />
+                  Jetzt Termin buchen & Preis sichern
+                </Button>
+                
+                <div className="mt-4 text-sm opacity-80">
+                  💡 Tipp: Bei Buchung innerhalb von 24h erhalten Sie zusätzlich 5% Rabatt!
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </section>
   );
