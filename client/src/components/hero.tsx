@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { MapPin, Calculator, Phone } from "lucide-react";
+import { MapPin, Calculator, Phone, Shield, Calendar, CheckCircle } from "lucide-react";
 import heroImage from "@assets/94cbe216-6224-4a73-9e04-0a0cb10b6df6_1754066721003.jpg";
 
 export default function Hero() {
@@ -47,18 +47,27 @@ export default function Hero() {
               </Button>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 text-center">
-              <div>
-                <div className="text-2xl font-bold text-primary">500+</div>
-                <div className="text-sm text-muted-foreground">Zufriedene Kunden</div>
+            <div className="grid grid-cols-3 gap-4 text-center">
+              <div className="bg-card rounded-lg p-4 border border-border shadow-sm">
+                <div className="bg-primary/10 text-primary rounded-lg p-3 w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                  <Calculator className="h-6 w-6" />
+                </div>
+                <div className="text-lg font-bold text-foreground mb-1">1. Preis berechnen</div>
+                <div className="text-sm text-muted-foreground">Mit Festpreisgarantie</div>
               </div>
-              <div>
-                <div className="text-2xl font-bold text-primary">24h</div>
-                <div className="text-sm text-muted-foreground">Schnelle Reaktion</div>
+              <div className="bg-card rounded-lg p-4 border border-border shadow-sm">
+                <div className="bg-secondary/10 text-secondary rounded-lg p-3 w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                  <Calendar className="h-6 w-6" />
+                </div>
+                <div className="text-lg font-bold text-foreground mb-1">2. Termin vereinbaren</div>
+                <div className="text-sm text-muted-foreground">Kostenlose Besichtigung</div>
               </div>
-              <div>
-                <div className="text-2xl font-bold text-primary">100%</div>
-                <div className="text-sm text-muted-foreground">Entsorgung</div>
+              <div className="bg-card rounded-lg p-4 border border-border shadow-sm">
+                <div className="bg-green-100 text-green-600 rounded-lg p-3 w-12 h-12 flex items-center justify-center mx-auto mb-3">
+                  <CheckCircle className="h-6 w-6" />
+                </div>
+                <div className="text-lg font-bold text-foreground mb-1">3. Job erledigt</div>
+                <div className="text-sm text-muted-foreground">Besenreine Übergabe</div>
               </div>
             </div>
           </div>

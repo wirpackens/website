@@ -47,6 +47,8 @@ Hinweis: Besenreine Übergabe ist bei allen Dienstleistungen standardmäßig ent
 - **Festpreis-Garantie im Preisrechner**: Grüne CTA-Sektion nach Preisberechnung mit direkter Calendly-Weiterleitung
 - 24h-Bonus-Rabatt von 5% bei schneller Buchung implementiert
 - Festpreisgarantie prominent mit Shield-Icon und attraktivem grünen Design
+- **3-Schritte-Prozess im Hero**: Ersetzte Statistiken durch visuellen Ablauf "Preis berechnen → Termin vereinbaren → Job erledigt"
+- Kachel-Design mit Icons für bessere User-Führung und Conversion-Optimierung
 - **Reale Firmenbilder implementiert**: Alle Placeholder-Bilder durch authentische Unternehmensfotos ersetzt
 - Hero-Sektion mit echtem Entrümpelungsteam-Foto aktualisiert
 - About-Sektion mit Bildern vom Treppenhaus-Transport und Arbeitsszenen ergänzt
