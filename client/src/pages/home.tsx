@@ -3,7 +3,7 @@ import Hero from "@/components/hero";
 import Services from "@/components/services";
 import PriceCalculator from "@/components/price-calculator";
 import About from "@/components/about";
-import Contact from "@/components/contact";
+import CalendlyBooking from "@/components/calendly-booking";
 import Footer from "@/components/footer";
 import PriceGuaranteeBanner from "@/components/price-guarantee-banner";
 import FreeInspectionBanner from "@/components/free-inspection-banner";
@@ -21,7 +21,7 @@ export default function Home() {
         <Services />
         <PriceCalculator />
         <About />
-        <Contact />
+        <CalendlyBooking />
       </main>
       <Footer />
     </div>

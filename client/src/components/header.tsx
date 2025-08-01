@@ -19,7 +19,7 @@ export default function Header() {
     { name: "Leistungen", href: "#services" },
     { name: "Preisrechner", href: "#calculator" },
     { name: "Über uns", href: "#about" },
-    { name: "Kontakt", href: "#contact" },
+    { name: "Termin buchen", href: "#contact" },
   ];
 
   return (
@@ -32,8 +32,8 @@ export default function Header() {
               <Truck className="h-6 w-6" />
             </div>
             <div>
-              <h1 className="text-xl lg:text-2xl font-bold text-foreground">Wir Packens</h1>
-              <p className="text-xs text-muted-foreground hidden lg:block">UG</p>
+              <h1 className="text-xl lg:text-2xl font-bold text-foreground">Wir Packen's</h1>
+              <p className="text-xs text-muted-foreground hidden lg:block">Entrümpelungsunternehmen UG</p>
             </div>
           </Link>
 

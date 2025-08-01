@@ -1,5 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Clock, Recycle, Euro } from "lucide-react";
+import aboutImage from "@assets/bd1ffe8f-962c-4b58-958a-9637adeef49a_1754066721004.jpg";
+import serviceImage1 from "@assets/ad847985-65f6-47bf-976b-4d158f84d81f_1754066721003.jpg";
+import serviceImage2 from "@assets/f7f6f513-4fc5-4f51-8ab2-7828c8732d52_1754066721004.jpg";
 
 export default function About() {
   const features = [
@@ -76,21 +79,21 @@ export default function About() {
 
           <div className="space-y-6">
             <img 
-              src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-              alt="Professionelles Entrümpelungsteam bei der Arbeit" 
+              src={aboutImage} 
+              alt="Professionelles Entrümpelungsteam beim Transport im Treppenhaus" 
               className="rounded-xl shadow-lg w-full h-auto" 
             />
             
             <div className="grid grid-cols-2 gap-4">
               <img 
-                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" 
-                alt="Professionelle Umzugskartons und Ausrüstung" 
+                src={serviceImage1} 
+                alt="Professionelle Entrümpelung von Wohnräumen" 
                 className="rounded-lg shadow-md w-full h-auto" 
               />
               
               <img 
-                src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" 
-                alt="Sauberer leerer Raum nach Entrümpelung" 
+                src={serviceImage2} 
+                alt="Besenreine Übergabe nach Entrümpelung" 
                 className="rounded-lg shadow-md w-full h-auto" 
               />
             </div>

@@ -4,7 +4,7 @@
 Professionelle Landingpage für ein deutsches Entrümpelungsunternehmen mit Sitz in Gudensberg, Hessen. Die Website bietet umfassende Informationen über Entrümpelungsdienstleistungen und einen interaktiven Preisrechner.
 
 ## Unternehmensdetails
-- **Firmenname**: Wir Packens UG (haftungsbeschränkt)
+- **Firmenname**: Wir Packen's Entrümpelungsunternehmen UG
 - **Standort**: Hans-Geisser-Straße 8, 34281 Gudensberg, Deutschland
 - **Einzugsgebiet**: 100km Umkreis um Gudensberg
 - **Domain**: wirpackens.org
@@ -39,35 +39,22 @@ Hinweis: Besenreine Übergabe ist bei allen Dienstleistungen standardmäßig ent
 - ✅ Rechtliche Seiten (Impressum, Datenschutz, AGB)
 - ✅ Vollständige Firmendetails implementiert
 
-## Letzte Änderungen (16. Juni 2025)
-- Firmennamen von "Wir packens Entrümplung UG" zu "Wir Packens UG" geändert
-- E-Mail-Adresse zu kontakt@wirpackens.org aktualisiert
-- Firmenadresse zu Hans-Geisser-Straße 8, 34281 Gudensberg angepasst
-- Alle Referenzen auf der Website entsprechend aktualisiert
-- TypeScript-Fehler im Kontaktformular behoben
-- GDPR-konformen Cookie-Banner implementiert mit granularen Einstellungen
-- Cookie-Verwaltung in Footer und Datenschutzerklärung ergänzt
-- Vollständige Cookie-Dokumentation in Datenschutzerklärung hinzugefügt
-- Projekt für GitHub und Vercel Deployment vorbereitet
-- README.md, DEPLOYMENT.md und GITHUB_SETUP.md erstellt
-- Vercel.json Konfiguration für optimales Deployment hinzugefügt
-- .gitignore für sauberes Repository Setup konfiguriert
-- **E-Mail-System implementiert**: SendGrid durch kostenloses nodemailer mit Gmail/SMTP2GO ersetzt
-- E-Mail-Versand für Kontaktformular und Preisrechner aktiviert
-- EMAIL_SETUP.md mit Anleitung für kostenlose E-Mail-Konfiguration erstellt
-- **Umzugsservice-Preismodell optimiert**: Von 80€/h auf 12€/m² angepasst (marktgerechte Pauschale)
-- "Möbelmontage" zu "Möbeldemontage" korrigiert
-- Preisrechner für einheitliche m²-Berechnung angepasst
-- **Besenrein als Standard integriert**: Separate Besenrein-Dienstleistung entfernt, ist jetzt bei allen Services enthalten
-- Alle Dienstleistungen um "Besenreine Übergabe" erweitert
-- **Express-Service Erklärung hinzugefügt**: Detaillierte Informationen zur 1-2 Tage Garantie für dringliche Aufträge
-- Visuelle Express-Service Sektion in Services-Bereich integriert
-- **Festpreisgarantie-Banner implementiert**: Prominenter Banner ganz oben mit Verkaufsargument "Keine versteckten Kosten"
-- Banner mit Schließ-Funktion und Shield-Icon für Vertrauensbildung
-- **Kostenlose Sichtprüfung bis 30km implementiert**: Prominenter Banner mit MapPin-Icon und grünem Design
-- Klare Kommunikation der kostenlosen Besichtigung ohne Verpflichtungen
-- **Aufbauservice-Klarstellung hinzugefügt**: Deutlicher Hinweis dass nur Demontage/Transport, keine Montage angeboten wird
-- Blaue Info-Box in Services-Sektion zur Vermeidung von Missverständnissen
+## Letzte Änderungen (1. August 2025)
+- **Calendly-Buchungssystem implementiert**: Vollständig integrierte Terminbuchung ersetzt das Kontaktformular
+- Calendly Widget für https://calendly.com/justin-wirpackens/30min eingebunden
+- Navigation auf "Termin buchen" angepasst für direkte Weiterleitung zum Buchungssystem
+- Hero-Button von "Kostenlos anrufen" zu "Termin buchen" geändert
+- **Reale Firmenbilder implementiert**: Alle Placeholder-Bilder durch authentische Unternehmensfotos ersetzt
+- Hero-Sektion mit echtem Entrümpelungsteam-Foto aktualisiert
+- About-Sektion mit Bildern vom Treppenhaus-Transport und Arbeitsszenen ergänzt
+- Services-Bereich visuell mit authentischen Arbeitsfotos aufgewertet
+- **Firmenname präzisiert**: Vollständige Bezeichnung "Wir Packen's Entrümpelungsunternehmen UG" einheitlich verwendet
+- Alle Komponenten und rechtlichen Seiten entsprechend aktualisiert
+- **Kostenlose E-Mail-Lösung**: nodemailer mit Gmail/SMTP2GO statt kostenpflichtigem SendGrid
+- **Express-Service prominent**: 1-2 Tage Garantie mit nur 20% Aufpreis hervorgehoben
+- **Preisgarantie-Banner**: "Keine versteckten Kosten" für Vertrauensbildung
+- **Kostenlose Besichtigung**: Bis 30km ohne Verpflichtungen prominent beworben
+- **Service-Klarstellung**: Ausschließlich Entrümpelung/Demontage, kein Aufbauservice
 
 ## Deployment Status
 - ✅ Alle Deployment-Dateien erstellt

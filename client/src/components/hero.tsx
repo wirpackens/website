@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { MapPin, Calculator, Phone } from "lucide-react";
+import heroImage from "@assets/94cbe216-6224-4a73-9e04-0a0cb10b6df6_1754066721003.jpg";
 
 export default function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -42,7 +43,7 @@ export default function Hero() {
                 className="btn-secondary flex items-center justify-center"
               >
                 <Phone className="h-4 w-4 mr-2" />
-                Kostenlos anrufen
+                Termin buchen
               </Button>
             </div>
 
@@ -64,8 +65,8 @@ export default function Hero() {
 
           <div className="relative">
             <img 
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-              alt="Professioneller Entrümpelungsservice mit LKW" 
+              src={heroImage} 
+              alt="Professionelle Entrümpelung - Team beim Entsorgen von Möbeln" 
               className="rounded-2xl shadow-2xl w-full h-auto" 
             />
             
