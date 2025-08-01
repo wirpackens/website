@@ -21,7 +21,7 @@ export default function FreeInspectionBanner() {
             <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
             <div>
               <p className="text-gray-700 mb-1">
-                <strong>Bis 30km von Gudensberg:</strong> Vollkommen kostenlose Besichtigung Ihrer Räumlichkeiten
+                <strong>Bis 50km von Gudensberg:</strong> Vollkommen kostenlose Besichtigung Ihrer Räumlichkeiten
               </p>
               <p className="text-sm text-gray-600">
                 Wir kommen zu Ihnen, schauen uns alles an und erstellen ein präzises, 

@@ -66,7 +66,7 @@ export default function About() {
               <CardContent className="p-6">
                 <h4 className="font-semibold text-foreground mb-3">Unser Einzugsgebiet</h4>
                 <p className="text-muted-foreground mb-4">
-                  Wir sind in einem Umkreis von 100km rund um Gudensberg tätig:
+                  Wir sind in einem Umkreis von 50km rund um Gudensberg tätig:
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm text-muted-foreground">
                   {serviceAreas.map((area, index) => (

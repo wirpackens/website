@@ -17,7 +17,7 @@ export default function Hero() {
           <div>
             <div className="inline-flex items-center bg-secondary/10 text-secondary px-3 py-1 rounded-full text-sm font-medium mb-6">
               <MapPin className="h-4 w-4 mr-2" />
-              Gudensberg, Hessen • 100km Umkreis
+              Gudensberg, Hessen • 50km Umkreis
             </div>
             
             <h1 className="text-3xl lg:text-5xl font-bold text-foreground leading-tight mb-6">
@@ -60,7 +60,7 @@ export default function Hero() {
                   <Calendar className="h-6 w-6" />
                 </div>
                 <div className="text-lg font-bold text-foreground mb-1">2. Termin vereinbaren</div>
-                <div className="text-sm text-muted-foreground">Kostenlose Besichtigung</div>
+                <div className="text-sm text-muted-foreground">Kostenlos bis 50km</div>
               </div>
               <div className="bg-card rounded-lg p-4 border border-border shadow-sm">
                 <div className="bg-green-100 text-green-600 rounded-lg p-3 w-12 h-12 flex items-center justify-center mx-auto mb-3">

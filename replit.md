@@ -6,7 +6,7 @@ Professionelle Landingpage für ein deutsches Entrümpelungsunternehmen mit Sitz
 ## Unternehmensdetails
 - **Firmenname**: Wir Packen's Entrümpelungsunternehmen UG
 - **Standort**: Hans-Geisser-Straße 8, 34281 Gudensberg, Deutschland
-- **Einzugsgebiet**: 100km Umkreis um Gudensberg
+- **Einzugsgebiet**: 50km Umkreis um Gudensberg
 - **Domain**: wirpackens.org
 - **E-Mail**: kontakt@wirpackens.org
 - **Telefon**: 05603 123456
@@ -61,7 +61,8 @@ Hinweis: Besenreine Übergabe ist bei allen Dienstleistungen standardmäßig ent
 - **Kostenlose E-Mail-Lösung**: nodemailer mit Gmail/SMTP2GO statt kostenpflichtigem SendGrid
 - **Express-Service prominent**: 1-2 Tage Garantie mit nur 20% Aufpreis hervorgehoben
 - **Preisgarantie-Banner**: "Keine versteckten Kosten" für Vertrauensbildung
-- **Kostenlose Besichtigung**: Bis 30km ohne Verpflichtungen prominent beworben
+- **Kostenlose Besichtigung**: Bis 50km ohne Verpflichtungen prominent beworben
+- **Einzugsgebiet angepasst**: Von 100km auf 50km Umkreis um Gudensberg reduziert für fokussiertere Dienstleistung
 - **Service-Klarstellung**: Ausschließlich Entrümpelung/Demontage, kein Aufbauservice
 
 ## Deployment Status

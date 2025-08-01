@@ -280,7 +280,7 @@ export default function PriceCalculator() {
                   </div>
                   <div className="bg-white/10 rounded-lg p-4">
                     <div className="font-semibold mb-2">📅 Kostenlose Besichtigung</div>
-                    <div className="text-sm opacity-90">Bis 30km ohne Verpflichtungen</div>
+                    <div className="text-sm opacity-90">Bis 50km ohne Verpflichtungen</div>
                   </div>
                 </div>
 
