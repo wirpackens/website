@@ -61,8 +61,8 @@ Hinweis: Besenreine Übergabe ist bei allen Dienstleistungen standardmäßig ent
 - **Kostenlose E-Mail-Lösung**: nodemailer mit Gmail/SMTP2GO statt kostenpflichtigem SendGrid
 - **Express-Service prominent**: 1-2 Tage Garantie mit nur 20% Aufpreis hervorgehoben
 - **Preisgarantie-Banner**: "Keine versteckten Kosten" für Vertrauensbildung
-- **Kostenlose Besichtigung**: Bis 50km ohne Verpflichtungen prominent beworben
 - **Einzugsgebiet angepasst**: Von 100km auf 50km Umkreis um Gudensberg reduziert für fokussiertere Dienstleistung
+- **Kostenloser Besichtigungs-Banner entfernt**: Auf Kundenwunsch zur Vereinfachung der Landing Page
 - **Service-Klarstellung**: Ausschließlich Entrümpelung/Demontage, kein Aufbauservice
 
 ## Deployment Status

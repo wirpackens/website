@@ -6,7 +6,6 @@ import About from "@/components/about";
 import CalendlyBooking from "@/components/calendly-booking";
 import Footer from "@/components/footer";
 import PriceGuaranteeBanner from "@/components/price-guarantee-banner";
-import FreeInspectionBanner from "@/components/free-inspection-banner";
 
 export default function Home() {
   return (
@@ -15,9 +14,6 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <div className="container mx-auto px-4 py-8">
-          <FreeInspectionBanner />
-        </div>
         <Services />
         <PriceCalculator />
         <About />
