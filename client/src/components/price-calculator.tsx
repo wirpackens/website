@@ -229,17 +229,17 @@ export default function PriceCalculator() {
                   </Card>
 
                   <div className="border-t border-white/20 pt-6">
-                    <div className="text-sm opacity-80 mb-2">Gesamtpreis (ca.)</div>
+                    <div className="text-sm opacity-80 mb-2">Ihr Festpreis</div>
                     <div className="text-4xl font-bold">{formatPrice(prices.totalPrice)}</div>
-                    <div className="text-sm opacity-80 mt-2">inkl. MwSt.</div>
+                    <div className="text-sm opacity-80 mt-2">inkl. MwSt. - Garantiert!</div>
                   </div>
 
                   <Card className="bg-white/10 border-white/20">
                     <CardContent className="p-4">
                       <div className="flex items-start space-x-3">
-                        <Info className="h-5 w-5 text-white/80 mt-0.5" />
+                        <Shield className="h-5 w-5 text-white/80 mt-0.5" />
                         <div className="text-sm opacity-90 leading-relaxed">
-                          Dies ist eine unverbindliche Schätzung. Der finale Preis wird nach einer kostenlosen Besichtigung festgelegt.
+                          <strong>Festpreisgarantie:</strong> Dieser berechnete Preis ist Ihr garantierter Festpreis. Keine versteckten Kosten oder Überraschungen!
                         </div>
                       </div>
                     </CardContent>
@@ -251,7 +251,7 @@ export default function PriceCalculator() {
                     className="w-full bg-white text-primary hover:bg-white/90 font-bold"
                   >
                     <Send className="h-4 w-4 mr-2" />
-                    {savePriceCalculation.isPending ? "Wird gespeichert..." : "Verbindliches Angebot anfordern"}
+                    {savePriceCalculation.isPending ? "Wird gespeichert..." : "Festpreis sichern & Termin vereinbaren"}
                   </Button>
                 </div>
               </div>

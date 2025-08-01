@@ -49,6 +49,9 @@ Hinweis: Besenreine Übergabe ist bei allen Dienstleistungen standardmäßig ent
 - Festpreisgarantie prominent mit Shield-Icon und attraktivem grünen Design
 - **3-Schritte-Prozess im Hero**: Ersetzte Statistiken durch visuellen Ablauf "Preis berechnen → Termin vereinbaren → Job erledigt"
 - Kachel-Design mit Icons für bessere User-Führung und Conversion-Optimierung
+- **Festpreis-Kommunikation optimiert**: Entfernte unverbindliche Schätzung, kommuniziert garantierten Festpreis
+- Preisrechner zeigt "Ihr Festpreis" statt "Gesamtpreis (ca.)" mit Shield-Icon für Vertrauen
+- Button-Text zu "Festpreis sichern & Termin vereinbaren" geändert
 - **Reale Firmenbilder implementiert**: Alle Placeholder-Bilder durch authentische Unternehmensfotos ersetzt
 - Hero-Sektion mit echtem Entrümpelungsteam-Foto aktualisiert
 - About-Sektion mit Bildern vom Treppenhaus-Transport und Arbeitsszenen ergänzt
