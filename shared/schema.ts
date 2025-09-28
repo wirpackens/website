@@ -33,6 +33,28 @@ export const priceCalculations = pgTable("price_calculations", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const bookings = pgTable("bookings", {
+  id: serial("id").primaryKey(),
+  priceCalculationId: integer("price_calculation_id").references(() => priceCalculations.id),
+  customerName: text("customer_name").notNull(),
+  customerEmail: text("customer_email").notNull(),
+  customerPhone: text("customer_phone").notNull(),
+  serviceType: text("service_type").notNull(),
+  appointmentDate: timestamp("appointment_date").notNull(),
+  appointmentTime: text("appointment_time").notNull(),
+  // Address fields - different for moving vs cleaning
+  currentAddress: text("current_address").notNull(),
+  newAddress: text("new_address"), // Only for moving services
+  specialRequests: text("special_requests"),
+  totalPrice: integer("total_price").notNull(),
+  depositAmount: integer("deposit_amount").notNull().default(20000), // 200€ in cents
+  paymentStatus: text("payment_status").notNull().default("pending"), // pending, paid, failed
+  stripePaymentIntentId: text("stripe_payment_intent_id"),
+  bookingStatus: text("booking_status").notNull().default("pending"), // pending, confirmed, completed, cancelled
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -48,9 +70,17 @@ export const insertPriceCalculationSchema = createInsertSchema(priceCalculations
   createdAt: true,
 });
 
+export const insertBookingSchema = createInsertSchema(bookings).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
 export type Contact = typeof contacts.$inferSelect;
 export type InsertPriceCalculation = z.infer<typeof insertPriceCalculationSchema>;
 export type PriceCalculation = typeof priceCalculations.$inferSelect;
+export type InsertBooking = z.infer<typeof insertBookingSchema>;
+export type Booking = typeof bookings.$inferSelect;

@@ -41,12 +41,15 @@ export function calculatePrice(
   }
 
   return {
-    basePrice: Math.round(basePrice),
-    additionalPrice: Math.round(additionalPrice),
-    totalPrice: Math.round(basePrice + additionalPrice),
+    basePrice: Math.round(basePrice * 100), // Convert to cents
+    additionalPrice: Math.round(additionalPrice * 100), // Convert to cents
+    totalPrice: Math.round((basePrice + additionalPrice) * 100), // Convert to cents
   };
 }
 
-export function formatPrice(price: number): string {
-  return `${price.toLocaleString('de-DE')}€`;
+export function formatPrice(priceInCents: number): string {
+  return new Intl.NumberFormat('de-DE', {
+    style: 'currency',
+    currency: 'EUR'
+  }).format(priceInCents / 100);
 }

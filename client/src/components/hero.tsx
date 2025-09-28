@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { MapPin, Calculator, Phone, Shield, Calendar, CheckCircle } from "lucide-react";
+import { MapPin, Calculator, Phone, Calendar, CheckCircle } from "lucide-react";
 import heroImage from "@assets/94cbe216-6224-4a73-9e04-0a0cb10b6df6_1754066721003.jpg";
 
 export default function Hero() {
@@ -21,7 +21,7 @@ export default function Hero() {
             </div>
             
             <h1 className="text-3xl lg:text-5xl font-bold text-foreground leading-tight mb-6">
-              Professionelle <span className="text-primary">Entrümplung</span> in Hessen
+              Professionelle <span className="text-primary">Entrümpelung und Umzüge</span> in Hessen
             </h1>
             
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">

@@ -1,9 +1,15 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema, insertPriceCalculationSchema } from "@shared/schema";
+import { insertContactSchema, insertPriceCalculationSchema, insertBookingSchema } from "@shared/schema";
 import { sendContactEmail, sendPriceCalculationEmail } from "./email";
 import { z } from "zod";
+import Stripe from "stripe";
+
+// Initialize Stripe (will need actual keys from user)
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_placeholder", {
+  apiVersion: "2024-12-18.acacia",
+});
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission
@@ -109,6 +115,176 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Create booking and Stripe payment intent
+  app.post("/api/bookings", async (req, res) => {
+    try {
+      console.log("🚀 Neue Buchungsanfrage erhalten:", JSON.stringify(req.body, null, 2));
+      
+      const validatedData = insertBookingSchema.parse(req.body);
+      console.log("✅ Buchungsdaten validiert:", validatedData);
+      
+      // Create booking in storage
+      const booking = await storage.createBooking(validatedData);
+      console.log("✅ Buchung in Storage erstellt:", booking.id);
+      
+      // Create Stripe payment intent
+      console.log("💳 Erstelle Stripe Payment Intent für:", validatedData.depositAmount, "Cent");
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: validatedData.depositAmount, // Amount in cents
+        currency: 'eur',
+        metadata: {
+          bookingId: booking.id.toString(),
+          customerEmail: validatedData.customerEmail,
+          serviceType: validatedData.serviceType,
+        },
+        automatic_payment_methods: {
+          enabled: true,
+        },
+      });
+      console.log("✅ Payment Intent erstellt:", paymentIntent.id);
+
+      // Update booking with payment intent ID
+      await storage.updateBooking(booking.id, {
+        stripePaymentIntentId: paymentIntent.id,
+      });
+      console.log("✅ Buchung mit Payment Intent ID aktualisiert");
+
+      // Create Stripe Checkout Session for better UX
+      console.log("🛒 Erstelle Stripe Checkout Session...");
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [
+          {
+            price_data: {
+              currency: 'eur',
+              product_data: {
+                name: `Anzahlung - ${getServiceTypeLabel(validatedData.serviceType)}`,
+                description: `Termin am ${validatedData.appointmentDate.toLocaleDateString('de-DE')} um ${validatedData.appointmentTime}`,
+              },
+              unit_amount: validatedData.depositAmount,
+            },
+            quantity: 1,
+          },
+        ],
+        mode: 'payment',
+        success_url: `${process.env.BASE_URL || 'http://localhost:3001'}/booking-success?session_id={CHECKOUT_SESSION_ID}&booking_id=${booking.id}`,
+        cancel_url: `${process.env.BASE_URL || 'http://localhost:3001'}/booking-cancelled?booking_id=${booking.id}`,
+        metadata: {
+          bookingId: booking.id.toString(),
+        },
+      });
+      console.log("✅ Checkout Session erstellt:", session.id);
+      console.log("🔗 Payment URL:", session.url);
+
+      res.json({ 
+        success: true, 
+        booking, 
+        paymentUrl: session.url,
+        sessionId: session.id 
+      });
+      console.log("📤 Antwort gesendet an Client");
+    } catch (error) {
+      console.error("❌ Fehler beim Erstellen der Buchung:", error);
+      
+      if (error instanceof z.ZodError) {
+        console.error("❌ Validierungsfehler:", error.errors);
+        res.status(400).json({ 
+          success: false, 
+          message: "Ungültige Buchungsdaten", 
+          errors: error.errors 
+        });
+      } else if (error.type === 'StripeError') {
+        console.error("❌ Stripe-Fehler:", error.message, error.code);
+        res.status(400).json({ 
+          success: false, 
+          message: `Stripe-Fehler: ${error.message}`,
+          stripeError: error.code
+        });
+      } else {
+        console.error('❌ Unbekannter Fehler:', error);
+        res.status(500).json({ 
+          success: false, 
+          message: "Fehler beim Erstellen der Buchung",
+          error: error.message || 'Unbekannter Fehler'
+        });
+      }
+    }
+  });
+
+  // Handle Stripe webhook for payment confirmation
+  app.post("/api/stripe-webhook", async (req, res) => {
+    const sig = req.headers['stripe-signature'];
+    let event;
+
+    try {
+      event = stripe.webhooks.constructEvent(req.body, sig as string, process.env.STRIPE_WEBHOOK_SECRET || "");
+    } catch (err: any) {
+      console.log(`Webhook signature verification failed.`, err.message);
+      return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+
+    // Handle the event
+    switch (event.type) {
+      case 'checkout.session.completed':
+        const session = event.data.object as Stripe.Checkout.Session;
+        const bookingId = parseInt(session.metadata?.bookingId || "0");
+        
+        if (bookingId) {
+          await storage.updateBooking(bookingId, {
+            paymentStatus: "paid",
+            bookingStatus: "confirmed",
+          });
+          
+          console.log(`Payment confirmed for booking ${bookingId}`);
+        }
+        break;
+      default:
+        console.log(`Unhandled event type ${event.type}`);
+    }
+
+    res.json({ received: true });
+  });
+
+  // Get booking success page data
+  app.get("/api/booking-success/:sessionId", async (req, res) => {
+    try {
+      const session = await stripe.checkout.sessions.retrieve(req.params.sessionId);
+      const bookingId = parseInt(session.metadata?.bookingId || "0");
+      
+      if (bookingId) {
+        const booking = await storage.getBooking(bookingId);
+        res.json({ success: true, booking, session });
+      } else {
+        res.status(404).json({ success: false, message: "Buchung nicht gefunden" });
+      }
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Fehler beim Laden der Buchungsdaten" });
+    }
+  });
+
+  // Get all bookings (for admin purposes)
+  app.get("/api/bookings", async (req, res) => {
+    try {
+      const bookings = await storage.getBookings();
+      res.json({ success: true, bookings });
+    } catch (error) {
+      res.status(500).json({ 
+        success: false, 
+        message: "Fehler beim Laden der Buchungen" 
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
+}
+
+function getServiceTypeLabel(type: string): string {
+  const labels: Record<string, string> = {
+    household: "Haushaltsauflösung",
+    office: "Büroentrümpelung", 
+    moving: "Umzug",
+    messie: "Messiewohnung"
+  };
+  return labels[type] || type;
 }
