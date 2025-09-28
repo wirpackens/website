@@ -124,6 +124,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/bookings", async (req, res) => {
     try {
       console.log("🚀 Neue Buchungsanfrage erhalten:", JSON.stringify(req.body, null, 2));
+      console.log("🔧 Stripe Key Status:", stripeSecretKey ? `Gesetzt (${stripeSecretKey.substring(0, 7)}...)` : "NICHT GESETZT");
+      console.log("🌍 Umgebungsvariablen Check:", {
+        STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY ? `Gesetzt (${process.env.STRIPE_SECRET_KEY.substring(0, 7)}...)` : "NICHT GESETZT",
+        BASE_URL: process.env.BASE_URL || "NICHT GESETZT",
+        NODE_ENV: process.env.NODE_ENV || "NICHT GESETZT"
+      });
       
       // Check if Stripe is properly configured
       if (!stripeSecretKey || stripeSecretKey === "sk_test_placeholder") {
@@ -131,20 +137,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(500).json({
           success: false,
           message: "Zahlungssystem ist nicht konfiguriert. Bitte kontaktieren Sie den Administrator.",
-          error: "STRIPE_NOT_CONFIGURED"
+          error: "STRIPE_NOT_CONFIGURED",
+          debug: {
+            stripeKeyPresent: !!stripeSecretKey,
+            stripeKeyLength: stripeSecretKey ? stripeSecretKey.length : 0,
+            envVarPresent: !!process.env.STRIPE_SECRET_KEY
+          }
         });
       }
       
+      console.log("📝 Starte Validierung der Buchungsdaten...");
       const validatedData = insertBookingSchema.parse(req.body);
       console.log("✅ Buchungsdaten validiert:", validatedData);
       
       // Create booking in storage
+      console.log("💾 Erstelle Buchung in Storage...");
       const booking = await storage.createBooking(validatedData);
       console.log("✅ Buchung in Storage erstellt:", booking.id);
       
       // Create Stripe payment intent
       const depositAmount = validatedData.depositAmount || 20000; // Default 200€ in cents
       console.log("💳 Erstelle Stripe Payment Intent für:", depositAmount, "Cent");
+      console.log("🔧 Stripe Konfiguration:", {
+        keyType: stripeSecretKey.startsWith('sk_live') ? 'LIVE' : 'TEST',
+        keyPrefix: stripeSecretKey.substring(0, 12) + '...'
+      });
+      
       const paymentIntent = await stripe.paymentIntents.create({
         amount: depositAmount, // Amount in cents
         currency: 'eur',
@@ -160,6 +178,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log("✅ Payment Intent erstellt:", paymentIntent.id);
 
       // Update booking with payment intent ID
+      console.log("🔄 Aktualisiere Buchung mit Payment Intent ID...");
       await storage.updateBooking(booking.id, {
         stripePaymentIntentId: paymentIntent.id,
       });
@@ -167,7 +186,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Create Stripe Checkout Session for better UX
       console.log("🛒 Erstelle Stripe Checkout Session...");
-      const session = await stripe.checkout.sessions.create({
+      const baseUrl = process.env.BASE_URL || 'http://localhost:3001';
+      console.log("🌐 Base URL für Redirects:", baseUrl);
+      
+      const sessionConfig = {
         payment_method_types: ['card'],
         line_items: [
           {
@@ -183,12 +205,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
           },
         ],
         mode: 'payment',
-        success_url: `${process.env.BASE_URL || 'http://localhost:3001'}/booking-success?session_id={CHECKOUT_SESSION_ID}&booking_id=${booking.id}`,
-        cancel_url: `${process.env.BASE_URL || 'http://localhost:3001'}/booking-cancelled?booking_id=${booking.id}`,
+        success_url: `${baseUrl}/booking-success?session_id={CHECKOUT_SESSION_ID}&booking_id=${booking.id}`,
+        cancel_url: `${baseUrl}/booking-cancelled?booking_id=${booking.id}`,
         metadata: {
           bookingId: booking.id.toString(),
         },
-      });
+      };
+      
+      console.log("🔧 Checkout Session Konfiguration:", JSON.stringify(sessionConfig, null, 2));
+      
+      const session = await stripe.checkout.sessions.create(sessionConfig);
       console.log("✅ Checkout Session erstellt:", session.id);
       console.log("🔗 Payment URL:", session.url);
 
@@ -200,32 +226,68 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
       console.log("📤 Antwort gesendet an Client");
     } catch (error: unknown) {
-      console.error("❌ Fehler beim Erstellen der Buchung:", error);
+      console.error("❌ DETAILLIERTER FEHLER beim Erstellen der Buchung:");
+      console.error("❌ Error Type:", typeof error);
+      console.error("❌ Error Constructor:", error?.constructor?.name);
+      console.error("❌ Full Error Object:", error);
+      
+      if (error && typeof error === 'object') {
+        console.error("❌ Error Properties:", Object.keys(error));
+        if ('stack' in error) {
+          console.error("❌ Stack Trace:", (error as any).stack);
+        }
+      }
       
       if (error instanceof z.ZodError) {
-        console.error("❌ Validierungsfehler:", error.errors);
+        console.error("❌ Validierungsfehler Details:", JSON.stringify(error.errors, null, 2));
         res.status(400).json({ 
           success: false, 
           message: "Ungültige Buchungsdaten", 
-          errors: error.errors 
+          errors: error.errors,
+          errorType: "VALIDATION_ERROR"
         });
       } else if (error && typeof error === 'object' && 'type' in error && (error as any).type === 'StripeError') {
         const stripeError = error as any;
-        console.error("❌ Stripe-Fehler:", stripeError.message, stripeError.code);
+        console.error("❌ Stripe-Fehler Details:", {
+          message: stripeError.message,
+          code: stripeError.code,
+          type: stripeError.type,
+          statusCode: stripeError.statusCode,
+          requestId: stripeError.requestId
+        });
         res.status(400).json({ 
           success: false, 
           message: `Stripe-Fehler: ${stripeError.message}`,
-          stripeError: stripeError.code
+          stripeError: stripeError.code,
+          errorType: "STRIPE_ERROR",
+          debug: {
+            code: stripeError.code,
+            type: stripeError.type,
+            statusCode: stripeError.statusCode
+          }
         });
       } else {
-        console.error('❌ Unbekannter Fehler:', error);
+        console.error('❌ Unbekannter Fehler Details:', {
+          message: error && typeof error === 'object' && 'message' in error ? (error as any).message : 'Keine Nachricht',
+          name: error && typeof error === 'object' && 'name' in error ? (error as any).name : 'Kein Name',
+          code: error && typeof error === 'object' && 'code' in error ? (error as any).code : 'Kein Code'
+        });
+        
         const errorMessage = error && typeof error === 'object' && 'message' in error 
           ? (error as any).message 
           : 'Unbekannter Fehler';
+          
         res.status(500).json({ 
           success: false, 
           message: "Fehler beim Erstellen der Buchung",
-          error: errorMessage
+          error: errorMessage,
+          errorType: "UNKNOWN_ERROR",
+          debug: {
+            type: typeof error,
+            constructor: error?.constructor?.name,
+            hasMessage: error && typeof error === 'object' && 'message' in error,
+            timestamp: new Date().toISOString()
+          }
         });
       }
     }

@@ -87,15 +87,27 @@ export class MemStorage implements IStorage {
   }
 
   async createBooking(insertBooking: InsertBooking): Promise<Booking> {
-    const id = this.currentBookingId++;
-    const booking: Booking = { 
-      ...insertBooking, 
-      id, 
-      createdAt: new Date(),
-      updatedAt: new Date()
-    };
-    this.bookings.set(id, booking);
-    return booking;
+    try {
+      console.log("💾 Storage: Erstelle neue Buchung mit ID:", this.currentBookingId);
+      console.log("💾 Storage: Eingangsdaten:", JSON.stringify(insertBooking, null, 2));
+      
+      const id = this.currentBookingId++;
+      const booking: Booking = { 
+        ...insertBooking, 
+        id, 
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+      
+      console.log("💾 Storage: Vollständige Buchung erstellt:", JSON.stringify(booking, null, 2));
+      this.bookings.set(id, booking);
+      console.log("💾 Storage: Buchung in Map gespeichert. Aktuelle Anzahl Buchungen:", this.bookings.size);
+      
+      return booking;
+    } catch (error) {
+      console.error("❌ Storage: Fehler beim Erstellen der Buchung:", error);
+      throw error;
+    }
   }
 
   async getBooking(id: number): Promise<Booking | undefined> {
@@ -103,16 +115,31 @@ export class MemStorage implements IStorage {
   }
 
   async updateBooking(id: number, updates: Partial<Booking>): Promise<Booking | undefined> {
-    const existing = this.bookings.get(id);
-    if (!existing) return undefined;
-    
-    const updated: Booking = { 
-      ...existing, 
-      ...updates, 
-      updatedAt: new Date() 
-    };
-    this.bookings.set(id, updated);
-    return updated;
+    try {
+      console.log("💾 Storage: Update Buchung ID:", id);
+      console.log("💾 Storage: Update-Daten:", JSON.stringify(updates, null, 2));
+      
+      const existing = this.bookings.get(id);
+      if (!existing) {
+        console.error("❌ Storage: Buchung nicht gefunden für ID:", id);
+        return undefined;
+      }
+      
+      console.log("💾 Storage: Bestehende Buchung gefunden:", JSON.stringify(existing, null, 2));
+      
+      const updated: Booking = { 
+        ...existing, 
+        ...updates, 
+        updatedAt: new Date() 
+      };
+      this.bookings.set(id, updated);
+      
+      console.log("💾 Storage: Buchung aktualisiert:", JSON.stringify(updated, null, 2));
+      return updated;
+    } catch (error) {
+      console.error("❌ Storage: Fehler beim Aktualisieren der Buchung:", error);
+      throw error;
+    }
   }
 
   async getBookings(): Promise<Booking[]> {
