@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import express from 'express';
 import { registerRoutes } from '../server/routes';
@@ -21,7 +22,28 @@ async function initializeRoutes() {
 // Vercel serverless function handler
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
+    console.log('🚀 Vercel Function called:', req.method, req.url);
+    console.log('🌍 Environment Check:', {
+      NODE_ENV: process.env.NODE_ENV,
+      STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY ? `Gesetzt (${process.env.STRIPE_SECRET_KEY.substring(0, 7)}...)` : 'NICHT GESETZT',
+      BASE_URL: process.env.BASE_URL || 'NICHT GESETZT'
+    });
+    
     await initializeRoutes();
+    
+    // Set CORS headers for all requests
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    
+    // Set Permissions Policy for Payment API
+    res.setHeader('Permissions-Policy', 'payment=*');
+    
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+      res.status(200).end();
+      return;
+    }
     
     // Convert Vercel request to Express request format
     const expressReq = req as any;
@@ -30,10 +52,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Handle the request with Express
     app(expressReq, expressRes);
   } catch (error) {
-    console.error('API Error:', error);
+    console.error('❌ Vercel Function Error:', error);
+    console.error('❌ Error Stack:', error instanceof Error ? error.stack : 'No stack trace');
     res.status(500).json({ 
       success: false, 
-      message: 'Internal server error' 
+      message: 'Internal server error',
+      error: error instanceof Error ? error.message : 'Unknown error',
+      timestamp: new Date().toISOString()
     });
   }
 }
