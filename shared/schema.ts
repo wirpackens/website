@@ -63,17 +63,31 @@ export const insertUserSchema = createInsertSchema(users).pick({
 export const insertContactSchema = createInsertSchema(contacts).omit({
   id: true,
   createdAt: true,
+}).extend({
+  phone: z.string().optional(),
+  service: z.string().optional(),
+  message: z.string().optional(),
 });
 
 export const insertPriceCalculationSchema = createInsertSchema(priceCalculations).omit({
   id: true,
   createdAt: true,
+}).extend({
+  expressService: z.boolean().optional(),
+  weekendService: z.boolean().optional(),
+  disposalService: z.boolean().optional(),
 });
 
 export const insertBookingSchema = createInsertSchema(bookings).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
+}).extend({
+  priceCalculationId: z.number().optional(),
+  newAddress: z.string().optional(),
+  specialRequests: z.string().optional(),
+  stripePaymentIntentId: z.string().optional(),
+  bookingStatus: z.string().optional(),
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;

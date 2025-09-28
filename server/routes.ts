@@ -8,7 +8,7 @@ import Stripe from "stripe";
 
 // Initialize Stripe (will need actual keys from user)
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_placeholder", {
-  apiVersion: "2024-12-18.acacia",
+  apiVersion: "2025-08-27.basil",
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -128,9 +128,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.log("✅ Buchung in Storage erstellt:", booking.id);
       
       // Create Stripe payment intent
-      console.log("💳 Erstelle Stripe Payment Intent für:", validatedData.depositAmount, "Cent");
+      const depositAmount = validatedData.depositAmount || 20000; // Default 200€ in cents
+      console.log("💳 Erstelle Stripe Payment Intent für:", depositAmount, "Cent");
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: validatedData.depositAmount, // Amount in cents
+        amount: depositAmount, // Amount in cents
         currency: 'eur',
         metadata: {
           bookingId: booking.id.toString(),
@@ -161,7 +162,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
                 name: `Anzahlung - ${getServiceTypeLabel(validatedData.serviceType)}`,
                 description: `Termin am ${validatedData.appointmentDate.toLocaleDateString('de-DE')} um ${validatedData.appointmentTime}`,
               },
-              unit_amount: validatedData.depositAmount,
+              unit_amount: depositAmount,
             },
             quantity: 1,
           },
@@ -183,7 +184,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         sessionId: session.id 
       });
       console.log("📤 Antwort gesendet an Client");
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("❌ Fehler beim Erstellen der Buchung:", error);
       
       if (error instanceof z.ZodError) {
@@ -193,19 +194,23 @@ export async function registerRoutes(app: Express): Promise<Server> {
           message: "Ungültige Buchungsdaten", 
           errors: error.errors 
         });
-      } else if (error.type === 'StripeError') {
-        console.error("❌ Stripe-Fehler:", error.message, error.code);
+      } else if (error && typeof error === 'object' && 'type' in error && (error as any).type === 'StripeError') {
+        const stripeError = error as any;
+        console.error("❌ Stripe-Fehler:", stripeError.message, stripeError.code);
         res.status(400).json({ 
           success: false, 
-          message: `Stripe-Fehler: ${error.message}`,
-          stripeError: error.code
+          message: `Stripe-Fehler: ${stripeError.message}`,
+          stripeError: stripeError.code
         });
       } else {
         console.error('❌ Unbekannter Fehler:', error);
+        const errorMessage = error && typeof error === 'object' && 'message' in error 
+          ? (error as any).message 
+          : 'Unbekannter Fehler';
         res.status(500).json({ 
           success: false, 
           message: "Fehler beim Erstellen der Buchung",
-          error: error.message || 'Unbekannter Fehler'
+          error: errorMessage
         });
       }
     }
