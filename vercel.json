@@ -19,7 +19,7 @@
       "headers": [
         {
           "key": "Permissions-Policy",
-          "value": "payment=*"
+          "value": "payment=(self \"https://js.stripe.com\" \"https://checkout.stripe.com\")"
         },
         {
           "key": "X-Content-Type-Options",
@@ -27,7 +27,7 @@
         },
         {
           "key": "X-Frame-Options",
-          "value": "DENY"
+          "value": "SAMEORIGIN"
         },
         {
           "key": "X-XSS-Protection",

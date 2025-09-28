@@ -17,6 +17,21 @@ const stripe = new Stripe(stripeSecretKey || "sk_test_placeholder", {
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Health check endpoint for debugging
+  app.get("/api/health", async (req, res) => {
+    console.log("🏥 Health check called");
+    res.json({
+      success: true,
+      message: "API is working",
+      timestamp: new Date().toISOString(),
+      environment: {
+        NODE_ENV: process.env.NODE_ENV,
+        STRIPE_KEY_PRESENT: !!process.env.STRIPE_SECRET_KEY,
+        BASE_URL: process.env.BASE_URL
+      }
+    });
+  });
+
   // Contact form submission
   app.post("/api/contact", async (req, res) => {
     try {

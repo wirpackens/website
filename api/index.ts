@@ -37,7 +37,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     
     // Set Permissions Policy for Payment API
-    res.setHeader('Permissions-Policy', 'payment=*');
+    res.setHeader('Permissions-Policy', 'payment=(self "https://js.stripe.com" "https://checkout.stripe.com")');
     
     // Handle preflight requests
     if (req.method === 'OPTIONS') {
