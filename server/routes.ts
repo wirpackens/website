@@ -7,7 +7,12 @@ import { z } from "zod";
 import Stripe from "stripe";
 
 // Initialize Stripe (will need actual keys from user)
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "sk_test_placeholder", {
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+if (!stripeSecretKey || stripeSecretKey === "sk_test_placeholder") {
+  console.error("❌ STRIPE_SECRET_KEY ist nicht konfiguriert! Bitte setzen Sie eine gültige Stripe Secret Key in den Umgebungsvariablen.");
+}
+
+const stripe = new Stripe(stripeSecretKey || "sk_test_placeholder", {
   apiVersion: "2025-08-27.basil",
 });
 
@@ -119,6 +124,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/bookings", async (req, res) => {
     try {
       console.log("🚀 Neue Buchungsanfrage erhalten:", JSON.stringify(req.body, null, 2));
+      
+      // Check if Stripe is properly configured
+      if (!stripeSecretKey || stripeSecretKey === "sk_test_placeholder") {
+        console.error("❌ Stripe nicht konfiguriert - kann keine Zahlung verarbeiten");
+        return res.status(500).json({
+          success: false,
+          message: "Zahlungssystem ist nicht konfiguriert. Bitte kontaktieren Sie den Administrator.",
+          error: "STRIPE_NOT_CONFIGURED"
+        });
+      }
       
       const validatedData = insertBookingSchema.parse(req.body);
       console.log("✅ Buchungsdaten validiert:", validatedData);
