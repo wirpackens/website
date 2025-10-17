@@ -64,7 +64,7 @@ export default function Impressum() {
                 <div className="text-muted-foreground">
                   <p>Eintragung im Handelsregister</p>
                   <p>Registergericht: Amtsgericht Kassel</p>
-                  <p>Registernummer: HRB 12345</p>
+                  <p>Registernummer: HRB 13024</p>
                 </div>
               </div>
 
@@ -79,21 +79,12 @@ export default function Impressum() {
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
                 <p className="text-muted-foreground">
-                  Max Mustermann<br />
+                  Justin Haesler und Christian Ritter<br />
                   Hans-Geisser-Straße 8<br />
                   34281 Gudensberg
                 </p>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-foreground mb-2">EU-Streitschlichtung</h3>
-                <p className="text-muted-foreground">
-                  Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
-                  <a href="https://ec.europa.eu/consumers/odr/" className="text-primary hover:underline ml-1">
-                    https://ec.europa.eu/consumers/odr/
-                  </a>
-                </p>
-              </div>
 
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Verbraucherstreitbeilegung/Universalschlichtungsstelle</h3>

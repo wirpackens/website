@@ -156,7 +156,7 @@ export default function Footer() {
             </div>
             <div className="flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 lg:space-x-6 text-muted-foreground text-sm">
               <div className="flex items-center space-x-6">
-                <span>Handelsregister: HRB 12345</span>
+                <span>Handelsregister: HRB 13024</span>
                 <span>USt-IdNr.: DE123456789</span>
               </div>
               <CookieSettingsButton />
