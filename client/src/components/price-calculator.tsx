@@ -10,7 +10,6 @@ import { useToast } from "@/hooks/use-toast";
 import { calculatePrice, formatPrice } from "@/lib/utils";
 import { apiRequest } from "@/lib/queryClient";
 import { Send, Shield, Calendar } from "lucide-react";
-import BookingFlow from "./booking-flow";
 import type { InsertPriceCalculation } from "@shared/schema";
 
 export default function PriceCalculator() {
@@ -21,8 +20,6 @@ export default function PriceCalculator() {
   const [weekendService, setWeekendService] = useState(false);
   const [disposalService, setDisposalService] = useState(false);
   const [prices, setPrices] = useState({ basePrice: 0, additionalPrice: 0, totalPrice: 0 });
-  const [showBookingFlow, setShowBookingFlow] = useState(false);
-  const [savedCalculation, setSavedCalculation] = useState<any>(null);
 
   const { toast } = useToast();
 
@@ -31,8 +28,7 @@ export default function PriceCalculator() {
       const response = await apiRequest("POST", "/api/price-calculation", data);
       return response.json();
     },
-    onSuccess: (data) => {
-      setSavedCalculation(data.calculation);
+    onSuccess: () => {
       toast({
         title: "Berechnung gespeichert",
         description: "Ihre Preisberechnung wurde erfolgreich gespeichert.",
@@ -80,31 +76,7 @@ export default function PriceCalculator() {
     }
   };
 
-  const handleBookAppointment = () => {
-    if (prices.totalPrice > 0) {
-      // If we have a saved calculation, use it, otherwise create the data object
-      const calculationForBooking = savedCalculation || {
-        serviceType,
-        roomCount: parseInt(roomCount) || 0,
-        squareMeters: parseInt(squareMeters) || 0,
-        expressService,
-        weekendService,
-        disposalService,
-        basePrice: prices.basePrice,
-        additionalPrice: prices.additionalPrice,
-        totalPrice: prices.totalPrice,
-      };
-      
-      setShowBookingFlow(true);
-    }
-  };
 
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const serviceOptions = [
     { value: "household", label: "Haushaltsauflösung (25€/m²)" },
@@ -270,12 +242,12 @@ export default function PriceCalculator() {
 
                   <div className="space-y-3">
                     <Button 
-                      onClick={handleBookAppointment}
+                      onClick={() => window.open('https://buy.stripe.com/6oUdR8foJ3Nw1Th4YJebu01', '_blank')}
                       disabled={prices.totalPrice === 0}
                       className="w-full bg-white text-primary hover:bg-white/90 font-bold"
                     >
                       <Calendar className="h-4 w-4 mr-2" />
-                      Jetzt Termin buchen
+                      Jetzt kaufen
                     </Button>
                     
                     <Button 
@@ -320,11 +292,11 @@ export default function PriceCalculator() {
                 </div>
 
                 <Button 
-                  onClick={scrollToContact}
+                  onClick={() => window.open('https://buy.stripe.com/6oUdR8foJ3Nw1Th4YJebu01', '_blank')}
                   className="bg-white text-green-600 hover:bg-gray-100 font-bold text-lg px-8 py-3 h-auto"
                 >
                   <Calendar className="h-5 w-5 mr-2" />
-                  Jetzt Termin buchen & Preis sichern
+                  Jetzt kaufen & Preis sichern
                 </Button>
                 
                 <div className="mt-4 text-sm opacity-80">
@@ -335,21 +307,6 @@ export default function PriceCalculator() {
           </div>
         )}
 
-        {/* Booking Flow Modal */}
-        {showBookingFlow && (
-          <BookingFlow
-            priceCalculation={savedCalculation || {
-              serviceType,
-              roomCount: parseInt(roomCount) || 0,
-              squareMeters: parseInt(squareMeters) || 0,
-              totalPrice: prices.totalPrice,
-              expressService,
-              weekendService,
-              disposalService,
-            }}
-            onClose={() => setShowBookingFlow(false)}
-          />
-        )}
       </div>
     </section>
   );
