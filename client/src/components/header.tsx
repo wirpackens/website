@@ -60,7 +60,7 @@ export default function Header() {
               <p className="text-xs text-muted-foreground">Kostenlose Beratung</p>
             </div>
             <Button 
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection('calculator')}
               className="btn-primary"
             >
               Angebot anfordern
