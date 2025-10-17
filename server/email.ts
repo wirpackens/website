@@ -156,7 +156,7 @@ export async function sendPriceCalculationEmail(data: PriceCalculationData): Pro
     };
 
     const additionalServices = [];
-    if (data.weekendService) additionalServices.push('Wochenend-Service (+15%)');
+    if (data.weekendService) additionalServices.push('Sonn- und Feiertagsservice (+15%)');
     if (data.disposalService) additionalServices.push('Sondermüll-Entsorgung (+10€/m²)');
 
     const mailOptions = {

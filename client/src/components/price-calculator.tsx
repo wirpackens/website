@@ -167,7 +167,7 @@ export default function PriceCalculator() {
                           onCheckedChange={(checked) => setWeekendService(checked === true)}
                         />
                         <Label htmlFor="weekend-service" className="text-sm">
-                          Wochenend-Service (+15%)
+                          Sonn- und Feiertagsservice (+15%)
                         </Label>
                       </div>
                       <div className="flex items-center space-x-2">
