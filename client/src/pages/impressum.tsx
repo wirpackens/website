@@ -28,7 +28,7 @@ export default function Impressum() {
             <CardContent className="space-y-6">
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Firma</h3>
-                <p className="text-muted-foreground">Wir Packens UG (haftungsbeschränkt)</p>
+                <p className="text-muted-foreground">Wir Packen's Entrümpelung UG (haftungsbeschränkt)</p>
               </div>
 
               <div>
@@ -79,7 +79,7 @@ export default function Impressum() {
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
                 <p className="text-muted-foreground">
-                  Justin Haesler und Christian Ritter<br />
+                  Justin Haesler<br />
                   Hans-Geisser-Straße 8<br />
                   34281 Gudensberg
                 </p>
