@@ -157,7 +157,7 @@ export default function BookingForm({
                 <Input
                   id="customerName"
                   type="text"
-                  placeholder="Max Mustermann"
+                  placeholder="Ihr Name"
                   value={formData.customerName}
                   onChange={(e) => handleInputChange('customerName', e.target.value)}
                   required

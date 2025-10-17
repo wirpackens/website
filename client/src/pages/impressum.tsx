@@ -56,7 +56,7 @@ export default function Impressum() {
 
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Geschäftsführer</h3>
-                <p className="text-muted-foreground">Max Mustermann</p>
+                <p className="text-muted-foreground">Justin Haesler und Christian Ritter</p>
               </div>
 
               <div>
@@ -68,13 +68,6 @@ export default function Impressum() {
                 </div>
               </div>
 
-              <div>
-                <h3 className="font-semibold text-foreground mb-2">Umsatzsteuer-ID</h3>
-                <p className="text-muted-foreground">
-                  Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
-                  DE123456789
-                </p>
-              </div>
 
               <div>
                 <h3 className="font-semibold text-foreground mb-2">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
