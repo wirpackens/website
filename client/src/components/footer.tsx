@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Truck } from "lucide-react";
+import { Package } from "lucide-react";
 import CookieSettingsButton from "@/components/cookie-settings-button";
 
 export default function Footer() {
@@ -33,7 +33,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-3 mb-6">
               <div className="bg-primary text-primary-foreground rounded-lg p-2">
-                <Truck className="h-6 w-6" />
+                <Package className="h-6 w-6" />
               </div>
               <div>
                 <h3 className="text-xl font-bold">Wir Packens</h3>

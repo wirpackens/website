@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Phone, Truck } from "lucide-react";
+import { Menu, Phone, Package } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +29,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
             <div className="bg-primary text-primary-foreground rounded-lg p-2">
-              <Truck className="h-6 w-6" />
+              <Package className="h-6 w-6" />
             </div>
             <div>
               <h1 className="text-xl lg:text-2xl font-bold text-foreground">Wir Packen's</h1>
