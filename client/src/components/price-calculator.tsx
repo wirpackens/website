@@ -16,7 +16,6 @@ export default function PriceCalculator() {
   const [serviceType, setServiceType] = useState("");
   const [roomCount, setRoomCount] = useState("");
   const [squareMeters, setSquareMeters] = useState("");
-  const [expressService, setExpressService] = useState(false);
   const [weekendService, setWeekendService] = useState(false);
   const [disposalService, setDisposalService] = useState(false);
   const [prices, setPrices] = useState({ basePrice: 0, additionalPrice: 0, totalPrice: 0 });
@@ -48,7 +47,6 @@ export default function PriceCalculator() {
       const newPrices = calculatePrice(
         serviceType,
         parseInt(squareMeters) || 0,
-        expressService,
         weekendService,
         disposalService
       );
@@ -56,7 +54,7 @@ export default function PriceCalculator() {
     } else {
       setPrices({ basePrice: 0, additionalPrice: 0, totalPrice: 0 });
     }
-  }, [serviceType, squareMeters, expressService, weekendService, disposalService]);
+  }, [serviceType, squareMeters, weekendService, disposalService]);
 
   const handleRequestQuote = () => {
     if (prices.totalPrice > 0) {
@@ -64,7 +62,6 @@ export default function PriceCalculator() {
         serviceType,
         roomCount: parseInt(roomCount) || 0,
         squareMeters: parseInt(squareMeters) || 0,
-        expressService,
         weekendService,
         disposalService,
         basePrice: prices.basePrice,
@@ -163,21 +160,6 @@ export default function PriceCalculator() {
                   <div className="space-y-2">
                     <Label>Zusatzleistungen</Label>
                     <div className="space-y-3">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="express-service"
-                          checked={expressService}
-                          onCheckedChange={(checked) => setExpressService(checked === true)}
-                        />
-                        <div className="flex flex-col">
-                          <Label htmlFor="express-service" className="text-sm font-medium">
-                            Express-Service (+20%)
-                          </Label>
-                          <p className="text-xs text-muted-foreground mt-1">
-                            Dringliche Erledigung innerhalb von 1-2 Tagen
-                          </p>
-                        </div>
-                      </div>
                       <div className="flex items-center space-x-2">
                         <Checkbox
                           id="weekend-service"

@@ -13,7 +13,6 @@ interface PriceCalculationData {
   serviceType: string;
   roomCount: number;
   squareMeters: number;
-  expressService: boolean;
   weekendService: boolean;
   disposalService: boolean;
   basePrice: number;
@@ -157,7 +156,6 @@ export async function sendPriceCalculationEmail(data: PriceCalculationData): Pro
     };
 
     const additionalServices = [];
-    if (data.expressService) additionalServices.push('Express-Service (+20%)');
     if (data.weekendService) additionalServices.push('Wochenend-Service (+15%)');
     if (data.disposalService) additionalServices.push('Sondermüll-Entsorgung (+10€/m²)');
 

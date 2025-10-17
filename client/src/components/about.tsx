@@ -44,7 +44,7 @@ export default function About() {
           <div>
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">Warum Wir packens?</h2>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Seit über 10 Jahren sind wir Ihr zuverlässiger Partner für professionelle Entrümpelungen in Hessen. 
+              Wir sind Ihr zuverlässiger Partner für professionelle Entrümpelungen in Hessen. 
               Unser erfahrenes Team sorgt für eine schnelle und umweltgerechte Abwicklung.
             </p>
 

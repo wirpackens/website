@@ -8,7 +8,6 @@ export function cn(...inputs: ClassValue[]) {
 export function calculatePrice(
   serviceType: string,
   squareMeters: number,
-  expressService: boolean = false,
   weekendService: boolean = false,
   disposalService: boolean = false
 ) {
@@ -29,9 +28,6 @@ export function calculatePrice(
     basePrice = pricePerUnit * squareMeters;
 
     // Additional services
-    if (expressService) {
-      additionalPrice += basePrice * 0.2; // 20% surcharge
-    }
     if (weekendService) {
       additionalPrice += basePrice * 0.15; // 15% surcharge
     }

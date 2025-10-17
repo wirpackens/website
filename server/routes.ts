@@ -93,7 +93,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         serviceType: validatedData.serviceType,
         roomCount: validatedData.roomCount,
         squareMeters: validatedData.squareMeters,
-        expressService: Boolean(validatedData.expressService),
         weekendService: Boolean(validatedData.weekendService),
         disposalService: Boolean(validatedData.disposalService),
         basePrice: validatedData.basePrice,

@@ -228,7 +228,6 @@ async function handlePriceCalculation(req: VercelRequest, res: VercelResponse) {
       serviceType: validatedData.serviceType,
       roomCount: validatedData.roomCount,
       squareMeters: validatedData.squareMeters,
-      expressService: Boolean(validatedData.expressService),
       weekendService: Boolean(validatedData.weekendService),
       disposalService: Boolean(validatedData.disposalService),
       basePrice: validatedData.basePrice,

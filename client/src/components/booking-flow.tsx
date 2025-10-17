@@ -17,7 +17,6 @@ interface BookingFlowProps {
     roomCount: number;
     squareMeters: number;
     totalPrice: number;
-    expressService: boolean;
     weekendService: boolean;
     disposalService: boolean;
   };

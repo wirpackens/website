@@ -24,7 +24,6 @@ export const priceCalculations = pgTable("price_calculations", {
   serviceType: text("service_type").notNull(),
   roomCount: integer("room_count").notNull(),
   squareMeters: integer("square_meters").notNull(),
-  expressService: boolean("express_service").default(false),
   weekendService: boolean("weekend_service").default(false),
   disposalService: boolean("disposal_service").default(false),
   basePrice: integer("base_price").notNull(),
@@ -73,7 +72,6 @@ export const insertPriceCalculationSchema = createInsertSchema(priceCalculations
   id: true,
   createdAt: true,
 }).extend({
-  expressService: z.boolean().optional(),
   weekendService: z.boolean().optional(),
   disposalService: z.boolean().optional(),
 });
