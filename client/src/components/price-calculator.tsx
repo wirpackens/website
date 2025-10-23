@@ -262,14 +262,10 @@ export default function PriceCalculator() {
                   mit unserer Festpreis-Garantie. Buchen Sie direkt einen Termin!
                 </p>
                 
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="grid md:grid-cols-1 gap-6 mb-8">
                   <div className="bg-white/10 rounded-lg p-4">
                     <div className="font-semibold mb-2">✅ Garantierter Festpreis</div>
                     <div className="text-sm opacity-90">Keine versteckten Kosten oder Überraschungen</div>
-                  </div>
-                  <div className="bg-white/10 rounded-lg p-4">
-                    <div className="font-semibold mb-2">📅 Kostenlose Besichtigung</div>
-                    <div className="text-sm opacity-90">Bis 50km ohne Verpflichtungen</div>
                   </div>
                 </div>
 
