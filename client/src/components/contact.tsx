@@ -209,7 +209,14 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-foreground">Telefon</h4>
-                      <p className="text-muted-foreground">05603 123456</p>
+                      <a 
+                        href="http://wa.me/491775248500" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        +491775248500
+                      </a>
                       <p className="text-sm text-muted-foreground">Mo-Fr: 7:00-18:00 Uhr</p>
                     </div>
                   </div>

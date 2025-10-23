@@ -45,7 +45,14 @@ export default function Impressum() {
                 <div className="space-y-1 text-muted-foreground">
                   <p className="flex items-center">
                     <Phone className="h-4 w-4 mr-2" />
-                    Telefon: 05603 123456
+                    Telefon: <a 
+                      href="http://wa.me/491775248500" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:text-primary transition-colors ml-1"
+                    >
+                      +491775248500
+                    </a>
                   </p>
                   <p className="flex items-center">
                     <Mail className="h-4 w-4 mr-2" />
