@@ -19,7 +19,7 @@ export default function Header() {
     { name: "Leistungen", href: "#services" },
     { name: "Preisrechner", href: "#calculator" },
     { name: "Über uns", href: "#about" },
-    { name: "Termin buchen", href: "#contact" },
+    { name: "Termin buchen", href: "http://wa.me/491775248500", isExternal: true },
   ];
 
   return (
@@ -40,13 +40,25 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => scrollToSection(item.href.slice(1))}
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                {item.name}
-              </button>
+              item.isExternal ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <button
+                  key={item.name}
+                  onClick={() => scrollToSection(item.href.slice(1))}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {item.name}
+                </button>
+              )
             ))}
           </nav>
 
@@ -83,13 +95,25 @@ export default function Header() {
               <SheetContent side="right" className="w-[300px]">
                 <div className="flex flex-col space-y-4 mt-8">
                   {navigation.map((item) => (
-                    <button
-                      key={item.name}
-                      onClick={() => scrollToSection(item.href.slice(1))}
-                      className="text-left py-2 text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      {item.name}
-                    </button>
+                    item.isExternal ? (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-left py-2 text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {item.name}
+                      </a>
+                    ) : (
+                      <button
+                        key={item.name}
+                        onClick={() => scrollToSection(item.href.slice(1))}
+                        className="text-left py-2 text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {item.name}
+                      </button>
+                    )
                   ))}
                   <div className="pt-4 border-t border-border">
                     <p className="text-sm font-medium text-foreground">

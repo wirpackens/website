@@ -280,10 +280,6 @@ export default function PriceCalculator() {
                   <Calendar className="h-5 w-5 mr-2" />
                   Jetzt kaufen & Preis sichern
                 </Button>
-                
-                <div className="mt-4 text-sm opacity-80">
-                  💡 Tipp: Bei Buchung innerhalb von 24h erhalten Sie zusätzlich 5% Rabatt!
-                </div>
               </CardContent>
             </Card>
           </div>

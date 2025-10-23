@@ -38,7 +38,7 @@ export default function Hero() {
                 Preis berechnen
               </Button>
               <Button 
-                onClick={() => scrollToSection('contact')}
+                onClick={() => window.open('http://wa.me/491775248500', '_blank')}
                 variant="outline" 
                 className="btn-secondary flex items-center justify-center"
               >
