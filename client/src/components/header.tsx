@@ -55,7 +55,14 @@ export default function Header() {
             <div className="hidden lg:block text-right">
               <p className="text-sm font-medium text-foreground">
                 <Phone className="inline h-4 w-4 text-primary mr-1" />
-                05603 123456
+                <a 
+                  href="http://wa.me/491775248500" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-primary transition-colors"
+                >
+                  +491775248500
+                </a>
               </p>
               <p className="text-xs text-muted-foreground">Kostenlose Beratung</p>
             </div>
@@ -87,7 +94,14 @@ export default function Header() {
                   <div className="pt-4 border-t border-border">
                     <p className="text-sm font-medium text-foreground">
                       <Phone className="inline h-4 w-4 text-primary mr-1" />
-                      05603 123456
+                      <a 
+                        href="http://wa.me/491775248500" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-primary transition-colors"
+                      >
+                        +491775248500
+                      </a>
                     </p>
                     <p className="text-xs text-muted-foreground">Kostenlose Beratung</p>
                   </div>
