@@ -98,7 +98,7 @@ export default function Footer() {
                 </svg>
                 <div>
                   <div>Gudensberg, Hessen</div>
-                  <div className="text-sm">100km Einsatzradius</div>
+                  <div className="text-sm">50km Einsatzradius</div>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
@@ -130,7 +130,7 @@ export default function Footer() {
         <div className="border-t border-muted-foreground/20 pt-8">
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
             <div className="text-muted-foreground text-sm">
-              © 2024 Wir Packens UG. Alle Rechte vorbehalten.
+              © 2025 Wir Packens UG. Alle Rechte vorbehalten.
             </div>
             <div className="flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 lg:space-x-6 text-muted-foreground text-sm">
               <div className="flex items-center space-x-6">
