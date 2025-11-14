@@ -1,7 +1,24 @@
+import { useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Calendar, Shield } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
+
+// TypeScript declaration for Google Calendar API
+declare global {
+  interface Window {
+    calendar?: {
+      schedulingButton: {
+        load: (config: {
+          url: string;
+          color?: string;
+          label?: string;
+          target: HTMLElement;
+          locale?: string;
+        }) => void;
+      };
+    };
+  }
+}
 
 interface AppointmentCalendarProps {
   onDateTimeSelect: (date: Date, time: string) => void;
@@ -11,6 +28,76 @@ interface AppointmentCalendarProps {
 }
 
 export default function AppointmentCalendar({ onDateTimeSelect: _onDateTimeSelect, selectedDate, selectedTime, totalPrice }: AppointmentCalendarProps) {
+  const calendarButtonRef = useRef<HTMLDivElement>(null);
+  const calendarButtonGuaranteeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Load Google Calendar Scheduling Button Script
+    const loadCalendarScript = () => {
+      // Load CSS
+      if (!document.querySelector('link[href*="calendar/scheduling-button-script.css"]')) {
+        const link = document.createElement('link');
+        link.href = 'https://calendar.google.com/calendar/scheduling-button-script.css';
+        link.rel = 'stylesheet';
+        document.head.appendChild(link);
+      }
+
+      // Load JS
+      if (!document.querySelector('script[src*="calendar/scheduling-button-script.js"]')) {
+        const script = document.createElement('script');
+        script.src = 'https://calendar.google.com/calendar/scheduling-button-script.js';
+        script.async = true;
+        script.onload = () => {
+          const calendarConfig = {
+            url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0U8t43j4VC_36EOQCKug1F_94nrLulJQ6p3MtOYpHilbnquJI8gwIMUv4qN_JghqIyGUbjwFtg?gv=true',
+            color: '#039BE5',
+            label: 'Termin eintragen',
+            locale: 'de' as const,
+          };
+
+          if (window.calendar?.schedulingButton) {
+            if (calendarButtonRef.current) {
+              window.calendar.schedulingButton.load({
+                ...calendarConfig,
+                target: calendarButtonRef.current,
+              });
+            }
+            if (calendarButtonGuaranteeRef.current) {
+              window.calendar.schedulingButton.load({
+                ...calendarConfig,
+                target: calendarButtonGuaranteeRef.current,
+              });
+            }
+          }
+        };
+        document.head.appendChild(script);
+      } else if (window.calendar?.schedulingButton) {
+        // Script already loaded, just initialize
+        const calendarConfig = {
+          url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0U8t43j4VC_36EOQCKug1F_94nrLulJQ6p3MtOYpHilbnquJI8gwIMUv4qN_JghqIyGUbjwFtg?gv=true',
+          color: '#039BE5',
+          label: 'Termin eintragen',
+          locale: 'de' as const,
+        };
+
+        if (calendarButtonRef.current) {
+          window.calendar.schedulingButton.load({
+            ...calendarConfig,
+            target: calendarButtonRef.current,
+          });
+        }
+        if (calendarButtonGuaranteeRef.current) {
+          window.calendar.schedulingButton.load({
+            ...calendarConfig,
+            target: calendarButtonGuaranteeRef.current,
+          });
+        }
+      }
+    };
+
+    loadCalendarScript();
+  }, []);
+
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6">
       <Card>
@@ -20,19 +107,13 @@ export default function AppointmentCalendar({ onDateTimeSelect: _onDateTimeSelec
             Wählen Sie Ihren Wunschtermin
           </CardTitle>
           <p className="text-sm text-muted-foreground">
-            Buchen Sie direkt über unseren SumUp-Kalender
+            Buchen Sie direkt über unseren Google Kalender
           </p>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* SumUp Booking Calendar iframe */}
-          <div className="w-full" style={{ minHeight: '800px' }}>
-            <iframe
-              src="https://www.sumupbookings.com/wir-packens-entruempelung-ug-haftungsbeschraenkt"
-              className="w-full border-0 rounded-lg"
-              style={{ minHeight: '800px', width: '100%' }}
-              title="SumUp Buchungskalender"
-              allow="payment"
-            />
+          {/* Google Calendar Appointment Scheduling Button */}
+          <div className="w-full flex justify-center py-8">
+            <div ref={calendarButtonRef} id="google-calendar-button"></div>
           </div>
           
           {selectedDate && selectedTime && (
@@ -76,13 +157,9 @@ export default function AppointmentCalendar({ onDateTimeSelect: _onDateTimeSelec
               </div>
             </div>
 
-            <Button 
-              onClick={() => window.open('https://www.sumupbookings.com/wir-packens-entruempelung-ug-haftungsbeschraenkt', '_blank')}
-              className="bg-white text-green-600 hover:bg-gray-100 font-bold text-lg px-8 py-3 h-auto"
-            >
-              <Calendar className="h-5 w-5 mr-2" />
-              Jetzt buchen & Preis sichern
-            </Button>
+            <div className="flex justify-center">
+              <div ref={calendarButtonGuaranteeRef} id="google-calendar-button-guarantee"></div>
+            </div>
           </CardContent>
         </Card>
       )}

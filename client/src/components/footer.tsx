@@ -1,6 +1,5 @@
 import { Link } from "wouter";
 import { Package } from "lucide-react";
-import CookieSettingsButton from "@/components/cookie-settings-button";
 
 export default function Footer() {
   const services = [
@@ -136,7 +135,6 @@ export default function Footer() {
               <div className="flex items-center space-x-6">
                 <span>Handelsregister: HRB 13024</span>
               </div>
-              <CookieSettingsButton />
             </div>
           </div>
         </div>

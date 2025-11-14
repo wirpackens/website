@@ -46,9 +46,9 @@ export default function BookingFlow({ priceCalculation, onClose }: BookingFlowPr
       }
     },
     onSuccess: () => {
-      console.log("🎉 Weiterleitung zum SumUp-Kalender");
-      // Direkte Weiterleitung zum SumUp-Buchungskalender
-      window.location.href = 'https://www.sumupbookings.com/wir-packens-entruempelung-ug-haftungsbeschraenkt';
+      console.log("🎉 Weiterleitung zum Google Kalender");
+      // Direkte Weiterleitung zum Google Calendar
+      window.location.href = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0U8t43j4VC_36EOQCKug1F_94nrLulJQ6p3MtOYpHilbnquJI8gwIMUv4qN_JghqIyGUbjwFtg?gv=true';
     },
     onError: (error) => {
       console.error("❌ Buchungsfehler:", error);
@@ -191,7 +191,7 @@ export default function BookingFlow({ priceCalculation, onClose }: BookingFlowPr
                 <Calendar className="h-12 w-12 mx-auto mb-4 text-primary" />
                 <h3 className="text-xl font-semibold mb-2">Weiterleitung zum Buchungskalender</h3>
                 <p className="text-muted-foreground mb-4">
-                  Sie werden zum SumUp-Buchungskalender weitergeleitet...
+                  Sie werden zum Google Kalender weitergeleitet...
                 </p>
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
               </CardContent>

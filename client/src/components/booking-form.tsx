@@ -259,7 +259,7 @@ export default function BookingForm({
                 <div className="space-y-2">
                   <h4 className="font-semibold text-green-800">Termin buchen</h4>
                   <p className="text-sm text-green-700">
-                    Nach dem Absenden werden Sie zum SumUp-Buchungskalender weitergeleitet, 
+                    Nach dem Absenden werden Sie zum Google Kalender weitergeleitet, 
                     um Ihren Termin zu buchen.
                   </p>
                   <p className="text-xs text-green-600">
