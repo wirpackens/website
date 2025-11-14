@@ -161,6 +161,14 @@ export default function PriceCalculator() {
                     </CardContent>
                   </Card>
 
+                  <Card className="bg-white/10 border-white/20">
+                    <CardContent className="p-4">
+                      <div className="text-sm opacity-90 leading-relaxed">
+                        <strong>💳 Flexible Zahlung:</strong> Ratenzahlung über Klarna möglich. Sprechen Sie uns gerne an!
+                      </div>
+                    </CardContent>
+                  </Card>
+
                   <div className="space-y-3">
                     <Button 
                       onClick={() => openGoogleCalendarPopup()}
@@ -198,9 +206,12 @@ export default function PriceCalculator() {
                   </div>
                 </div>
                 
-                <div className="bg-white/10 rounded-lg p-4 mb-6">
+                <div className="bg-white/10 rounded-lg p-4 mb-6 space-y-2">
                   <div className="text-sm opacity-90">
                     <strong>Hinweis:</strong> Die Beseitigung von Sondermüll wird zusätzlich berechnet und ist nicht im Festpreis inkludiert.
+                  </div>
+                  <div className="text-sm opacity-90">
+                    <strong>💳 Flexible Zahlung:</strong> Ratenzahlung über Klarna möglich. Sprechen Sie uns gerne an!
                   </div>
                 </div>
 

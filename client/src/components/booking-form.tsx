@@ -140,6 +140,11 @@ export default function BookingForm({
                 {formatPrice(depositAmount * 100)}
               </span>
             </div>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mt-3">
+              <p className="text-xs text-blue-800">
+                <strong>💳 Flexible Zahlung:</strong> Ratenzahlung über Klarna möglich. Sprechen Sie uns gerne an!
+              </p>
+            </div>
           </CardContent>
         </Card>
 
