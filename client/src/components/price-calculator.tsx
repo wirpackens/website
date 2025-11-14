@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
-import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useToast } from "@/hooks/use-toast";
 import { calculatePrice, formatPrice } from "@/lib/utils";
-import { apiRequest } from "@/lib/queryClient";
-import { Send, Shield, Calendar } from "lucide-react";
-import type { InsertPriceCalculation } from "@shared/schema";
+import { Shield, Calendar } from "lucide-react";
 
 export default function PriceCalculator() {
   const [serviceType, setServiceType] = useState("");
@@ -17,27 +13,6 @@ export default function PriceCalculator() {
   const [squareMeters, setSquareMeters] = useState("");
   const [prices, setPrices] = useState({ basePrice: 0, additionalPrice: 0, totalPrice: 0 });
 
-  const { toast } = useToast();
-
-  const savePriceCalculation = useMutation({
-    mutationFn: async (data: InsertPriceCalculation) => {
-      const response = await apiRequest("POST", "/api/price-calculation", data);
-      return response.json();
-    },
-    onSuccess: () => {
-      toast({
-        title: "Berechnung gespeichert",
-        description: "Ihre Preisberechnung wurde erfolgreich gespeichert.",
-      });
-    },
-    onError: () => {
-      toast({
-        title: "Fehler",
-        description: "Die Berechnung konnte nicht gespeichert werden.",
-        variant: "destructive",
-      });
-    },
-  });
 
   useEffect(() => {
     if (serviceType && squareMeters) {
@@ -54,22 +29,6 @@ export default function PriceCalculator() {
     }
   }, [serviceType, squareMeters, floorCount]);
 
-  const handleRequestQuote = () => {
-    if (prices.totalPrice > 0) {
-      const calculationData: InsertPriceCalculation = {
-        serviceType,
-        floorCount: parseInt(floorCount) || 1,
-        squareMeters: parseInt(squareMeters) || 0,
-        weekendService: false, // Sonn- und Feiertage sind nicht erlaubt
-        disposalService: false, // Sondermüll wird separat berechnet
-        basePrice: prices.basePrice,
-        additionalPrice: prices.additionalPrice,
-        totalPrice: prices.totalPrice,
-      };
-
-      savePriceCalculation.mutate(calculationData);
-    }
-  };
 
 
 
@@ -209,16 +168,6 @@ export default function PriceCalculator() {
                     >
                       <Calendar className="h-4 w-4 mr-2" />
                       Jetzt buchen
-                    </Button>
-                    
-                    <Button 
-                      onClick={handleRequestQuote}
-                      disabled={prices.totalPrice === 0 || savePriceCalculation.isPending}
-                      variant="outline"
-                      className="w-full bg-white/10 text-white border-white/20 hover:bg-white/20"
-                    >
-                      <Send className="h-4 w-4 mr-2" />
-                      {savePriceCalculation.isPending ? "Wird gespeichert..." : "Nur Preis sichern"}
                     </Button>
                   </div>
                 </div>

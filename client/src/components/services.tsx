@@ -3,13 +3,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Home, Building, Truck, AlertTriangle, Fan, Star, Check } from "lucide-react";
 
 export default function Services() {
-  const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const services = [
     {
       icon: Home,
@@ -89,7 +82,7 @@ export default function Services() {
                 Kombinieren Sie mehrere Leistungen und sparen Sie. Wir kümmern uns um alles aus einer Hand.
               </p>
               <Button 
-                onClick={scrollToContact}
+                onClick={() => window.open('http://wa.me/491775248500', '_blank')}
                 variant="secondary"
                 className="bg-white text-primary hover:bg-white/90"
               >
