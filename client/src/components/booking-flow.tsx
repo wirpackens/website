@@ -29,7 +29,6 @@ export default function BookingFlow({ priceCalculation, onClose }: BookingFlowPr
   const [currentStep, setCurrentStep] = useState<BookingStep>("calendar");
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [selectedTime, setSelectedTime] = useState<string>();
-  const [bookingData, setBookingData] = useState<BookingFormData>();
   
   const { toast } = useToast();
 
@@ -90,16 +89,8 @@ export default function BookingFlow({ priceCalculation, onClose }: BookingFlowPr
     setSelectedTime(time);
   };
 
-  const handleNextFromCalendar = () => {
-    if (selectedDate && selectedTime) {
-      setCurrentStep("form");
-    }
-  };
-
   const handleFormSubmit = (formData: BookingFormData) => {
     if (!selectedDate || !selectedTime) return;
-
-    setBookingData(formData);
     
     const bookingPayload: InsertBooking = {
       priceCalculationId: priceCalculation.id || null,
@@ -174,6 +165,7 @@ export default function BookingFlow({ priceCalculation, onClose }: BookingFlowPr
                 onDateTimeSelect={handleDateTimeSelect}
                 selectedDate={selectedDate}
                 selectedTime={selectedTime}
+                totalPrice={priceCalculation.totalPrice}
               />
               
               <div className="flex justify-between">

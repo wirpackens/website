@@ -16,7 +16,6 @@ export default function PriceCalculator() {
   const [serviceType, setServiceType] = useState("");
   const [floorCount, setFloorCount] = useState("");
   const [squareMeters, setSquareMeters] = useState("");
-  const [weekendService, setWeekendService] = useState(false);
   const [disposalService, setDisposalService] = useState(false);
   const [prices, setPrices] = useState({ basePrice: 0, additionalPrice: 0, totalPrice: 0 });
 
@@ -48,14 +47,14 @@ export default function PriceCalculator() {
         serviceType,
         parseInt(squareMeters) || 0,
         parseInt(floorCount) || 1,
-        weekendService,
+        false, // weekendService entfernt - Sonn- und Feiertage sind nicht erlaubt
         disposalService
       );
       setPrices(newPrices);
     } else {
       setPrices({ basePrice: 0, additionalPrice: 0, totalPrice: 0 });
     }
-  }, [serviceType, squareMeters, floorCount, weekendService, disposalService]);
+  }, [serviceType, squareMeters, floorCount, disposalService]);
 
   const handleRequestQuote = () => {
     if (prices.totalPrice > 0) {
@@ -63,7 +62,7 @@ export default function PriceCalculator() {
         serviceType,
         floorCount: parseInt(floorCount) || 1,
         squareMeters: parseInt(squareMeters) || 0,
-        weekendService,
+        weekendService: false, // Sonn- und Feiertage sind nicht erlaubt
         disposalService,
         basePrice: prices.basePrice,
         additionalPrice: prices.additionalPrice,
@@ -171,16 +170,6 @@ export default function PriceCalculator() {
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2">
                         <Checkbox
-                          id="weekend-service"
-                          checked={weekendService}
-                          onCheckedChange={(checked) => setWeekendService(checked === true)}
-                        />
-                        <Label htmlFor="weekend-service" className="text-sm">
-                          Sonn- und Feiertagsservice (+15%)
-                        </Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
                           id="disposal-service"
                           checked={disposalService}
                           onCheckedChange={(checked) => setDisposalService(checked === true)}
@@ -189,7 +178,6 @@ export default function PriceCalculator() {
                           Sondermüll-Entsorgung (+10€/m²)
                         </Label>
                       </div>
-
                     </div>
                   </div>
                 </div>
