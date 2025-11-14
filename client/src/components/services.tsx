@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Home, Building, Truck, AlertTriangle, Fan, Star, Check } from "lucide-react";
+import { Home, Building, Truck, AlertTriangle, Fan, Star, Check, CreditCard } from "lucide-react";
 
 export default function Services() {
   const services = [
@@ -87,6 +87,39 @@ export default function Services() {
                 className="bg-white text-primary hover:bg-white/90"
               >
                 Beratung anfragen
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-br from-green-500 to-emerald-600 text-white border-0 shadow-lg">
+            <CardContent className="p-8">
+              <div className="bg-white/20 rounded-lg p-4 w-16 h-16 flex items-center justify-center mb-6">
+                <CreditCard className="h-8 w-8" />
+              </div>
+              <h3 className="text-xl font-bold mb-4">Flexible Zahlung</h3>
+              <p className="mb-6 leading-relaxed opacity-90">
+                Ratenzahlung über Klarna möglich. Sprechen Sie uns gerne an und finden Sie die passende Zahlungsoption für Ihr Projekt.
+              </p>
+              <ul className="text-sm opacity-90 space-y-2 mb-6">
+                <li className="flex items-center">
+                  <Check className="h-4 w-4 text-white mr-2" />
+                  Ratenzahlung möglich
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-4 w-4 text-white mr-2" />
+                  Einfache Abwicklung
+                </li>
+                <li className="flex items-center">
+                  <Check className="h-4 w-4 text-white mr-2" />
+                  Flexible Laufzeiten
+                </li>
+              </ul>
+              <Button 
+                onClick={() => window.open('http://wa.me/491775248500', '_blank')}
+                variant="secondary"
+                className="bg-white text-green-600 hover:bg-white/90 w-full"
+              >
+                Jetzt anfragen
               </Button>
             </CardContent>
           </Card>
