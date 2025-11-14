@@ -38,7 +38,7 @@ export default function Hero() {
                 Preis berechnen
               </Button>
               <Button 
-                onClick={() => window.open('http://wa.me/491775248500', '_blank')}
+                onClick={() => window.open('https://www.sumupbookings.com/wir-packens-entruempelung-ug-haftungsbeschraenkt', '_blank')}
                 variant="outline" 
                 className="btn-secondary flex items-center justify-center"
               >

@@ -19,7 +19,7 @@ export default function Header() {
     { name: "Leistungen", href: "#services" },
     { name: "Preisrechner", href: "#calculator" },
     { name: "Über uns", href: "#about" },
-    { name: "Termin buchen", href: "http://wa.me/491775248500", isExternal: true },
+    { name: "Termin buchen", href: "https://www.sumupbookings.com/wir-packens-entruempelung-ug-haftungsbeschraenkt", isExternal: true },
   ];
 
   return (

@@ -181,12 +181,9 @@ export default function BookingFlow({ priceCalculation, onClose }: BookingFlowPr
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Zurück
                 </Button>
-                <Button 
-                  onClick={handleNextFromCalendar}
-                  disabled={!selectedDate || !selectedTime}
-                >
-                  Weiter zu den Buchungsdetails
-                </Button>
+                <p className="text-sm text-muted-foreground self-center">
+                  Buchen Sie direkt im Kalender oben
+                </p>
               </div>
             </div>
           )}

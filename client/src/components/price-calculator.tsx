@@ -233,12 +233,12 @@ export default function PriceCalculator() {
 
                   <div className="space-y-3">
                     <Button 
-                      onClick={() => window.open('https://buy.stripe.com/6oUdR8foJ3Nw1Th4YJebu01', '_blank')}
+                      onClick={() => window.open('https://www.sumupbookings.com/wir-packens-entruempelung-ug-haftungsbeschraenkt', '_blank')}
                       disabled={prices.totalPrice === 0}
                       className="w-full bg-white text-primary hover:bg-white/90 font-bold"
                     >
                       <Calendar className="h-4 w-4 mr-2" />
-                      Jetzt kaufen
+                      Jetzt buchen
                     </Button>
                     
                     <Button 
@@ -279,11 +279,11 @@ export default function PriceCalculator() {
                 </div>
 
                 <Button 
-                  onClick={() => window.open('https://buy.stripe.com/6oUdR8foJ3Nw1Th4YJebu01', '_blank')}
+                  onClick={() => window.open('https://www.sumupbookings.com/wir-packens-entruempelung-ug-haftungsbeschraenkt', '_blank')}
                   className="bg-white text-green-600 hover:bg-gray-100 font-bold text-lg px-8 py-3 h-auto"
                 >
                   <Calendar className="h-5 w-5 mr-2" />
-                  Jetzt kaufen & Preis sichern
+                  Jetzt buchen & Preis sichern
                 </Button>
               </CardContent>
             </Card>
