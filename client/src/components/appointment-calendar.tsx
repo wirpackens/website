@@ -69,6 +69,12 @@ export default function AppointmentCalendar({ onDateTimeSelect: _onDateTimeSelec
                 <div className="text-sm opacity-90">Keine versteckten Kosten oder Überraschungen</div>
               </div>
             </div>
+            
+            <div className="bg-white/10 rounded-lg p-4 mb-6">
+              <div className="text-sm opacity-90">
+                <strong>Hinweis:</strong> Die Beseitigung von Sondermüll wird zusätzlich berechnet und ist nicht im Festpreis inkludiert.
+              </div>
+            </div>
 
             <Button 
               onClick={() => window.open('https://www.sumupbookings.com/wir-packens-entruempelung-ug-haftungsbeschraenkt', '_blank')}

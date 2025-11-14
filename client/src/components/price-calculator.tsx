@@ -5,7 +5,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { calculatePrice, formatPrice } from "@/lib/utils";
 import { apiRequest } from "@/lib/queryClient";
@@ -16,7 +15,6 @@ export default function PriceCalculator() {
   const [serviceType, setServiceType] = useState("");
   const [floorCount, setFloorCount] = useState("");
   const [squareMeters, setSquareMeters] = useState("");
-  const [disposalService, setDisposalService] = useState(false);
   const [prices, setPrices] = useState({ basePrice: 0, additionalPrice: 0, totalPrice: 0 });
 
   const { toast } = useToast();
@@ -48,13 +46,13 @@ export default function PriceCalculator() {
         parseInt(squareMeters) || 0,
         parseInt(floorCount) || 1,
         false, // weekendService entfernt - Sonn- und Feiertage sind nicht erlaubt
-        disposalService
+        false // disposalService entfernt - Sondermüll wird separat berechnet
       );
       setPrices(newPrices);
     } else {
       setPrices({ basePrice: 0, additionalPrice: 0, totalPrice: 0 });
     }
-  }, [serviceType, squareMeters, floorCount, disposalService]);
+  }, [serviceType, squareMeters, floorCount]);
 
   const handleRequestQuote = () => {
     if (prices.totalPrice > 0) {
@@ -63,7 +61,7 @@ export default function PriceCalculator() {
         floorCount: parseInt(floorCount) || 1,
         squareMeters: parseInt(squareMeters) || 0,
         weekendService: false, // Sonn- und Feiertage sind nicht erlaubt
-        disposalService,
+        disposalService: false, // Sondermüll wird separat berechnet
         basePrice: prices.basePrice,
         additionalPrice: prices.additionalPrice,
         totalPrice: prices.totalPrice,
@@ -164,22 +162,6 @@ export default function PriceCalculator() {
                     />
                   </div>
 
-                  {/* Additional Services */}
-                  <div className="space-y-2">
-                    <Label>Zusatzleistungen</Label>
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="disposal-service"
-                          checked={disposalService}
-                          onCheckedChange={(checked) => setDisposalService(checked === true)}
-                        />
-                        <Label htmlFor="disposal-service" className="text-sm">
-                          Sondermüll-Entsorgung (+10€/m²)
-                        </Label>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </CardContent>
 
@@ -263,6 +245,12 @@ export default function PriceCalculator() {
                   <div className="bg-white/10 rounded-lg p-4">
                     <div className="font-semibold mb-2">✅ Garantierter Festpreis</div>
                     <div className="text-sm opacity-90">Keine versteckten Kosten oder Überraschungen</div>
+                  </div>
+                </div>
+                
+                <div className="bg-white/10 rounded-lg p-4 mb-6">
+                  <div className="text-sm opacity-90">
+                    <strong>Hinweis:</strong> Die Beseitigung von Sondermüll wird zusätzlich berechnet und ist nicht im Festpreis inkludiert.
                   </div>
                 </div>
 

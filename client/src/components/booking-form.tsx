@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
-import { User, MapPin, MessageSquare, CreditCard } from "lucide-react";
+import { User, MapPin, MessageSquare, Calendar } from "lucide-react";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
 
@@ -251,19 +251,19 @@ export default function BookingForm({
             </div>
           </div>
 
-          {/* Payment Info */}
+          {/* Booking Info */}
           <Card className="bg-gradient-to-r from-green-50 to-emerald-50 border-green-200">
             <CardContent className="p-4">
               <div className="flex items-start gap-3">
-                <CreditCard className="h-5 w-5 text-green-600 mt-0.5" />
+                <Calendar className="h-5 w-5 text-green-600 mt-0.5" />
                 <div className="space-y-2">
-                  <h4 className="font-semibold text-green-800">Sichere Zahlung</h4>
+                  <h4 className="font-semibold text-green-800">Termin buchen</h4>
                   <p className="text-sm text-green-700">
-                    Nach dem Absenden werden Sie zur sicheren Stripe-Zahlung weitergeleitet, 
-                    um Ihre Anzahlung von {formatPrice(depositAmount * 100)} zu tätigen.
+                    Nach dem Absenden werden Sie zum SumUp-Buchungskalender weitergeleitet, 
+                    um Ihren Termin zu buchen.
                   </p>
                   <p className="text-xs text-green-600">
-                    ✓ SSL-verschlüsselt ✓ PCI-konform ✓ Keine Kartendaten gespeichert
+                    ✓ Sichere Buchung ✓ Direkte Terminauswahl ✓ Einfach und schnell
                   </p>
                 </div>
               </div>
@@ -276,8 +276,8 @@ export default function BookingForm({
             className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 h-auto"
             disabled={!isFormValid() || isLoading}
           >
-            <CreditCard className="h-4 w-4 mr-2" />
-            {isLoading ? "Wird verarbeitet..." : `Zur Zahlung (${formatPrice(depositAmount * 100)})`}
+            <Calendar className="h-4 w-4 mr-2" />
+            {isLoading ? "Wird verarbeitet..." : "Zum Buchungskalender"}
           </Button>
           
           <p className="text-xs text-center text-muted-foreground">

@@ -7,7 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import AppointmentCalendar from "./appointment-calendar";
 import BookingForm, { type BookingFormData } from "./booking-form";
-import { ArrowLeft, Calendar, User, CreditCard, CheckCircle } from "lucide-react";
+import { ArrowLeft, Calendar, User, CheckCircle } from "lucide-react";
 import type { InsertBooking } from "@shared/schema";
 
 interface BookingFlowProps {
@@ -45,24 +45,10 @@ export default function BookingFlow({ priceCalculation, onClose }: BookingFlowPr
         throw error;
       }
     },
-    onSuccess: (data) => {
-      console.log("🎉 Buchung erfolgreich erstellt:", data);
-      if (data.paymentUrl) {
-        console.log("💳 Weiterleitung zu Stripe:", data.paymentUrl);
-        // Use window.open for better browser compatibility
-        const paymentWindow = window.open(data.paymentUrl, '_self');
-        if (!paymentWindow) {
-          console.error("❌ Popup blockiert - versuche direkte Weiterleitung");
-          window.location.href = data.paymentUrl;
-        }
-      } else {
-        console.error("❌ Keine Payment URL erhalten:", data);
-        toast({
-          title: "Fehler",
-          description: "Keine Zahlungs-URL erhalten. Bitte versuchen Sie es erneut.",
-          variant: "destructive",
-        });
-      }
+    onSuccess: () => {
+      console.log("🎉 Weiterleitung zum SumUp-Kalender");
+      // Direkte Weiterleitung zum SumUp-Buchungskalender
+      window.location.href = 'https://www.sumupbookings.com/wir-packens-entruempelung-ug-haftungsbeschraenkt';
     },
     onError: (error) => {
       console.error("❌ Buchungsfehler:", error);
@@ -202,10 +188,10 @@ export default function BookingFlow({ priceCalculation, onClose }: BookingFlowPr
           {currentStep === "payment" && (
             <Card className="max-w-md mx-auto">
               <CardContent className="p-8 text-center">
-                <CreditCard className="h-12 w-12 mx-auto mb-4 text-primary" />
-                <h3 className="text-xl font-semibold mb-2">Weiterleitung zur Zahlung</h3>
+                <Calendar className="h-12 w-12 mx-auto mb-4 text-primary" />
+                <h3 className="text-xl font-semibold mb-2">Weiterleitung zum Buchungskalender</h3>
                 <p className="text-muted-foreground mb-4">
-                  Sie werden zur sicheren Stripe-Zahlung weitergeleitet...
+                  Sie werden zum SumUp-Buchungskalender weitergeleitet...
                 </p>
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
               </CardContent>
