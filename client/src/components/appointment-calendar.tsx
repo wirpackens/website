@@ -1,24 +1,8 @@
-import { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, Shield } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
-
-// TypeScript declaration for Google Calendar API
-declare global {
-  interface Window {
-    calendar?: {
-      schedulingButton: {
-        load: (config: {
-          url: string;
-          color?: string;
-          label?: string;
-          target: HTMLElement;
-          locale?: string;
-        }) => void;
-      };
-    };
-  }
-}
+import { openGoogleCalendarPopup } from "@/lib/google-calendar";
 
 interface AppointmentCalendarProps {
   onDateTimeSelect: (date: Date, time: string) => void;
@@ -28,75 +12,6 @@ interface AppointmentCalendarProps {
 }
 
 export default function AppointmentCalendar({ onDateTimeSelect: _onDateTimeSelect, selectedDate, selectedTime, totalPrice }: AppointmentCalendarProps) {
-  const calendarButtonRef = useRef<HTMLDivElement>(null);
-  const calendarButtonGuaranteeRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Load Google Calendar Scheduling Button Script
-    const loadCalendarScript = () => {
-      // Load CSS
-      if (!document.querySelector('link[href*="calendar/scheduling-button-script.css"]')) {
-        const link = document.createElement('link');
-        link.href = 'https://calendar.google.com/calendar/scheduling-button-script.css';
-        link.rel = 'stylesheet';
-        document.head.appendChild(link);
-      }
-
-      // Load JS
-      if (!document.querySelector('script[src*="calendar/scheduling-button-script.js"]')) {
-        const script = document.createElement('script');
-        script.src = 'https://calendar.google.com/calendar/scheduling-button-script.js';
-        script.async = true;
-        script.onload = () => {
-          const calendarConfig = {
-            url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0U8t43j4VC_36EOQCKug1F_94nrLulJQ6p3MtOYpHilbnquJI8gwIMUv4qN_JghqIyGUbjwFtg?gv=true',
-            color: '#039BE5',
-            label: 'Termin eintragen',
-            locale: 'de' as const,
-          };
-
-          if (window.calendar?.schedulingButton) {
-            if (calendarButtonRef.current) {
-              window.calendar.schedulingButton.load({
-                ...calendarConfig,
-                target: calendarButtonRef.current,
-              });
-            }
-            if (calendarButtonGuaranteeRef.current) {
-              window.calendar.schedulingButton.load({
-                ...calendarConfig,
-                target: calendarButtonGuaranteeRef.current,
-              });
-            }
-          }
-        };
-        document.head.appendChild(script);
-      } else if (window.calendar?.schedulingButton) {
-        // Script already loaded, just initialize
-        const calendarConfig = {
-          url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0U8t43j4VC_36EOQCKug1F_94nrLulJQ6p3MtOYpHilbnquJI8gwIMUv4qN_JghqIyGUbjwFtg?gv=true',
-          color: '#039BE5',
-          label: 'Termin eintragen',
-          locale: 'de' as const,
-        };
-
-        if (calendarButtonRef.current) {
-          window.calendar.schedulingButton.load({
-            ...calendarConfig,
-            target: calendarButtonRef.current,
-          });
-        }
-        if (calendarButtonGuaranteeRef.current) {
-          window.calendar.schedulingButton.load({
-            ...calendarConfig,
-            target: calendarButtonGuaranteeRef.current,
-          });
-        }
-      }
-    };
-
-    loadCalendarScript();
-  }, []);
 
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6">
@@ -111,9 +26,16 @@ export default function AppointmentCalendar({ onDateTimeSelect: _onDateTimeSelec
           </p>
         </CardHeader>
         <CardContent className="space-y-6">
-          {/* Google Calendar Appointment Scheduling Button */}
+          {/* Google Calendar Button */}
           <div className="w-full flex justify-center py-8">
-            <div ref={calendarButtonRef} id="google-calendar-button"></div>
+            <Button 
+              onClick={() => openGoogleCalendarPopup()}
+              size="lg"
+              className="bg-[#039BE5] hover:bg-[#0288D1] text-white font-semibold px-8 py-6 text-lg"
+            >
+              <Calendar className="h-5 w-5 mr-2" />
+              Termin eintragen
+            </Button>
           </div>
           
           {selectedDate && selectedTime && (
@@ -157,9 +79,13 @@ export default function AppointmentCalendar({ onDateTimeSelect: _onDateTimeSelec
               </div>
             </div>
 
-            <div className="flex justify-center">
-              <div ref={calendarButtonGuaranteeRef} id="google-calendar-button-guarantee"></div>
-            </div>
+            <Button 
+              onClick={() => openGoogleCalendarPopup()}
+              className="bg-white text-green-600 hover:bg-gray-100 font-bold text-lg px-8 py-3 h-auto"
+            >
+              <Calendar className="h-5 w-5 mr-2" />
+              Jetzt buchen & Preis sichern
+            </Button>
           </CardContent>
         </Card>
       )}

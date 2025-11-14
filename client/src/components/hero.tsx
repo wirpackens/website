@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { MapPin, Calculator, Calendar, CheckCircle } from "lucide-react";
+import { MapPin, Calculator, Phone, Calendar, CheckCircle } from "lucide-react";
 import heroImage from "@assets/94cbe216-6224-4a73-9e04-0a0cb10b6df6_1754066721003.jpg";
-import GoogleCalendarButton from "./google-calendar-button";
+import { openGoogleCalendarPopup } from "@/lib/google-calendar";
 
 export default function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -38,9 +38,14 @@ export default function Hero() {
                 <Calculator className="h-4 w-4 mr-2" />
                 Preis berechnen
               </Button>
-              <div className="btn-secondary flex items-center justify-center">
-                <GoogleCalendarButton />
-              </div>
+              <Button 
+                onClick={() => openGoogleCalendarPopup()}
+                variant="outline" 
+                className="btn-secondary flex items-center justify-center"
+              >
+                <Phone className="h-4 w-4 mr-2" />
+                Termin buchen
+              </Button>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">

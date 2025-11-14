@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Phone, Package } from "lucide-react";
+import { openGoogleCalendarPopup } from "@/lib/google-calendar";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function Header() {
     { name: "Leistungen", href: "#services" },
     { name: "Preisrechner", href: "#calculator" },
     { name: "Über uns", href: "#about" },
-    { name: "Termin buchen", href: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0U8t43j4VC_36EOQCKug1F_94nrLulJQ6p3MtOYpHilbnquJI8gwIMUv4qN_JghqIyGUbjwFtg?gv=true", isExternal: true },
+    { name: "Termin buchen", href: "#", isCalendar: true },
   ];
 
   return (
@@ -40,16 +41,17 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
-              item.isExternal ? (
-                <a
+              item.isCalendar ? (
+                <button
                   key={item.name}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    openGoogleCalendarPopup();
+                  }}
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {item.name}
-                </a>
+                </button>
               ) : (
                 <button
                   key={item.name}
@@ -95,16 +97,18 @@ export default function Header() {
               <SheetContent side="right" className="w-[300px]">
                 <div className="flex flex-col space-y-4 mt-8">
                   {navigation.map((item) => (
-                    item.isExternal ? (
-                      <a
+                    item.isCalendar ? (
+                      <button
                         key={item.name}
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setIsOpen(false);
+                          openGoogleCalendarPopup();
+                        }}
                         className="text-left py-2 text-muted-foreground hover:text-primary transition-colors"
                       >
                         {item.name}
-                      </a>
+                      </button>
                     ) : (
                       <button
                         key={item.name}

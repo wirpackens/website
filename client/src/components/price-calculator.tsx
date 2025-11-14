@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { calculatePrice, formatPrice } from "@/lib/utils";
-import { Shield } from "lucide-react";
-import GoogleCalendarButton from "./google-calendar-button";
+import { Shield, Calendar } from "lucide-react";
+import { openGoogleCalendarPopup } from "@/lib/google-calendar";
 
 export default function PriceCalculator() {
   const [serviceType, setServiceType] = useState("");
@@ -161,9 +162,14 @@ export default function PriceCalculator() {
                   </Card>
 
                   <div className="space-y-3">
-                    <div className="w-full flex justify-center">
-                      <GoogleCalendarButton />
-                    </div>
+                    <Button 
+                      onClick={() => openGoogleCalendarPopup()}
+                      disabled={prices.totalPrice === 0}
+                      className="w-full bg-white text-primary hover:bg-white/90 font-bold"
+                    >
+                      <Calendar className="h-4 w-4 mr-2" />
+                      Jetzt buchen
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -198,9 +204,13 @@ export default function PriceCalculator() {
                   </div>
                 </div>
 
-                <div className="flex justify-center">
-                  <GoogleCalendarButton />
-                </div>
+                <Button 
+                  onClick={() => openGoogleCalendarPopup()}
+                  className="bg-white text-green-600 hover:bg-gray-100 font-bold text-lg px-8 py-3 h-auto"
+                >
+                  <Calendar className="h-5 w-5 mr-2" />
+                  Jetzt buchen & Preis sichern
+                </Button>
               </CardContent>
             </Card>
           </div>
