@@ -91,7 +91,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Send email notification for price calculation
       const emailSent = await sendPriceCalculationEmail({
         serviceType: validatedData.serviceType,
-        roomCount: validatedData.roomCount,
+        floorCount: validatedData.floorCount,
         squareMeters: validatedData.squareMeters,
         weekendService: Boolean(validatedData.weekendService),
         disposalService: Boolean(validatedData.disposalService),

@@ -12,7 +12,7 @@ import { de } from "date-fns/locale";
 interface BookingFormProps {
   priceCalculation: {
     serviceType: string;
-    roomCount: number;
+    floorCount: number;
     squareMeters: number;
     totalPrice: number;
     weekendService: boolean;
@@ -117,8 +117,8 @@ export default function BookingForm({
                 </div>
               </div>
               <div>
-                <span className="text-muted-foreground">Räume:</span>
-                <div className="font-medium">{priceCalculation.roomCount} Räume</div>
+                <span className="text-muted-foreground">Stockwerke:</span>
+                <div className="font-medium">{priceCalculation.floorCount} Stockwerk{priceCalculation.floorCount !== 1 ? 'e' : ''}</div>
               </div>
               <div>
                 <span className="text-muted-foreground">Fläche:</span>

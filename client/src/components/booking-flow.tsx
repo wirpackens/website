@@ -14,7 +14,7 @@ interface BookingFlowProps {
   priceCalculation: {
     id?: number;
     serviceType: string;
-    roomCount: number;
+    floorCount: number;
     squareMeters: number;
     totalPrice: number;
     weekendService: boolean;

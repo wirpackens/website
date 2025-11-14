@@ -226,7 +226,7 @@ async function handlePriceCalculation(req: VercelRequest, res: VercelResponse) {
     
     const emailSent = await sendPriceCalculationEmail({
       serviceType: validatedData.serviceType,
-      roomCount: validatedData.roomCount,
+      floorCount: validatedData.floorCount,
       squareMeters: validatedData.squareMeters,
       weekendService: Boolean(validatedData.weekendService),
       disposalService: Boolean(validatedData.disposalService),

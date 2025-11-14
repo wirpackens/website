@@ -22,7 +22,7 @@ export const contacts = pgTable("contacts", {
 export const priceCalculations = pgTable("price_calculations", {
   id: serial("id").primaryKey(),
   serviceType: text("service_type").notNull(),
-  roomCount: integer("room_count").notNull(),
+  floorCount: integer("floor_count").notNull(),
   squareMeters: integer("square_meters").notNull(),
   weekendService: boolean("weekend_service").default(false),
   disposalService: boolean("disposal_service").default(false),

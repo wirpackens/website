@@ -8,6 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 export function calculatePrice(
   serviceType: string,
   squareMeters: number,
+  floorCount: number = 1,
   weekendService: boolean = false,
   disposalService: boolean = false
 ) {
@@ -26,6 +27,15 @@ export function calculatePrice(
 
     // All services are now per square meter
     basePrice = pricePerUnit * squareMeters;
+
+    // Stockwerksberechnung: +5% pro Stockwerk, max +50% bei 10 Stockwerken
+    // 1 Stockwerk = 0%, 2 Stockwerke = +5%, ..., 9 Stockwerke = +40%, 10+ Stockwerke = +50%
+    const effectiveFloorCount = Math.min(floorCount, 10); // Limit bei 10 Stockwerken
+    const floorSurchargePercent = effectiveFloorCount >= 10 
+      ? 0.50 // Bei 10+ Stockwerken: +50%
+      : (effectiveFloorCount - 1) * 0.05; // Pro zusätzliches Stockwerk: +5%
+    const floorSurcharge = basePrice * floorSurchargePercent;
+    additionalPrice += floorSurcharge;
 
     // Additional services
     if (weekendService) {

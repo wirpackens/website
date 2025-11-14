@@ -11,7 +11,7 @@ interface EmailData {
 
 interface PriceCalculationData {
   serviceType: string;
-  roomCount: number;
+  floorCount: number;
   squareMeters: number;
   weekendService: boolean;
   disposalService: boolean;
@@ -169,7 +169,7 @@ export async function sendPriceCalculationEmail(data: PriceCalculationData): Pro
         <h3>Projektdetails:</h3>
         <ul>
           <li><strong>Dienstleistung:</strong> ${serviceLabels[data.serviceType] || data.serviceType}</li>
-          <li><strong>Anzahl Räume:</strong> ${data.roomCount}</li>
+          <li><strong>Anzahl Stockwerke:</strong> ${data.floorCount}</li>
           <li><strong>Quadratmeter:</strong> ${data.squareMeters} m²</li>
           ${additionalServices.length > 0 ? `<li><strong>Zusatzleistungen:</strong> ${additionalServices.join(', ')}</li>` : ''}
         </ul>
@@ -191,7 +191,7 @@ Neue Preisberechnung über die Website
 
 Projektdetails:
 - Dienstleistung: ${serviceLabels[data.serviceType] || data.serviceType}
-- Anzahl Räume: ${data.roomCount}
+- Anzahl Stockwerke: ${data.floorCount}
 - Quadratmeter: ${data.squareMeters} m²
 ${additionalServices.length > 0 ? `- Zusatzleistungen: ${additionalServices.join(', ')}` : ''}
 

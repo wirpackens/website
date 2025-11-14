@@ -14,7 +14,7 @@ import type { InsertPriceCalculation } from "@shared/schema";
 
 export default function PriceCalculator() {
   const [serviceType, setServiceType] = useState("");
-  const [roomCount, setRoomCount] = useState("");
+  const [floorCount, setFloorCount] = useState("");
   const [squareMeters, setSquareMeters] = useState("");
   const [weekendService, setWeekendService] = useState(false);
   const [disposalService, setDisposalService] = useState(false);
@@ -47,6 +47,7 @@ export default function PriceCalculator() {
       const newPrices = calculatePrice(
         serviceType,
         parseInt(squareMeters) || 0,
+        parseInt(floorCount) || 1,
         weekendService,
         disposalService
       );
@@ -54,13 +55,13 @@ export default function PriceCalculator() {
     } else {
       setPrices({ basePrice: 0, additionalPrice: 0, totalPrice: 0 });
     }
-  }, [serviceType, squareMeters, weekendService, disposalService]);
+  }, [serviceType, squareMeters, floorCount, weekendService, disposalService]);
 
   const handleRequestQuote = () => {
     if (prices.totalPrice > 0) {
       const calculationData: InsertPriceCalculation = {
         serviceType,
-        roomCount: parseInt(roomCount) || 0,
+        floorCount: parseInt(floorCount) || 1,
         squareMeters: parseInt(squareMeters) || 0,
         weekendService,
         disposalService,
@@ -82,12 +83,17 @@ export default function PriceCalculator() {
     { value: "messie", label: "Messiewohnung (35€/m²)" },
   ];
 
-  const roomOptions = [
-    { value: "1", label: "1 Raum" },
-    { value: "2", label: "2 Räume" },
-    { value: "3", label: "3 Räume" },
-    { value: "4", label: "4 Räume" },
-    { value: "5", label: "5+ Räume" },
+  const floorOptions = [
+    { value: "1", label: "1 Stockwerk" },
+    { value: "2", label: "2 Stockwerke" },
+    { value: "3", label: "3 Stockwerke" },
+    { value: "4", label: "4 Stockwerke" },
+    { value: "5", label: "5 Stockwerke" },
+    { value: "6", label: "6 Stockwerke" },
+    { value: "7", label: "7 Stockwerke" },
+    { value: "8", label: "8 Stockwerke" },
+    { value: "9", label: "9 Stockwerke" },
+    { value: "10", label: "10+ Stockwerke" },
   ];
 
   return (
@@ -125,21 +131,24 @@ export default function PriceCalculator() {
                     </Select>
                   </div>
 
-                  {/* Room Count */}
+                  {/* Floor Count */}
                   <div className="space-y-2">
-                    <Label htmlFor="room-count">Anzahl Räume</Label>
-                    <Select value={roomCount} onValueChange={setRoomCount}>
+                    <Label htmlFor="floor-count">Anzahl Stockwerke</Label>
+                    <Select value={floorCount} onValueChange={setFloorCount}>
                       <SelectTrigger>
                         <SelectValue placeholder="Bitte wählen..." />
                       </SelectTrigger>
                       <SelectContent>
-                        {roomOptions.map((option) => (
+                        {floorOptions.map((option) => (
                           <SelectItem key={option.value} value={option.value}>
                             {option.label}
                           </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
+                    <p className="text-xs text-muted-foreground">
+                      +5% pro Stockwerk (max. +50% bei 10+ Stockwerken)
+                    </p>
                   </div>
 
                   {/* Square Meters */}
